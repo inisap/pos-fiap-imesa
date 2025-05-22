@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: container-postgres-imesa
+    restart: always
+    environment:
+      POSTGRES_USER: imesa_user
+      POSTGRES_PASSWORD: imesa_password
+      POSTGRES_DB: imesa_db
+    ports:
+      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: container-app-imesa
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/imesa_db
+      SPRING_DATASOURCE_USERNAME: imesa_user
+      SPRING_DATASOURCE_PASSWORD: imesa_password
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
