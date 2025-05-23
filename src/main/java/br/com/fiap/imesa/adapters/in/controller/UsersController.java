@@ -13,12 +13,25 @@ import br.com.fiap.imesa.application.ports.in.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ConsultaIdUsuarioPorLoginExemplo.RETORNO_NOT_FOUND_CONSULTA_USUARIO_POR_LOGIN;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ConsultaIdUsuarioPorLoginExemplo.RETORNO_SUCESSO_CONSULTA_USUARIO_POR_LOGIN;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ConsultaUsuarioExemplo.RETORNO_NOT_FOUND_CONSULTA_USUARIO_POR_ID;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ConsultaUsuarioExemplo.RETORNO_SUCESSO_CONSULTA_USUARIO_POR_ID;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.CriarUsuarioExemplo.RETORNO_CRIACAO_USUARIO_SUCESSO;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.DeletaUsuarioExemplo.RETORNO_NOT_FOUND_NA_EXCLUSAO;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ValidaLoginExemplo.RETORNO_SUCESSO;
+import static br.com.fiap.imesa.adapters.in.docs.retornosExemplos.ValidaLoginExemplo.RETORNO_USUARIO_SENHA_INVALIDO;
 
 @Slf4j
 @RestController
@@ -39,7 +52,7 @@ public class UsersController {
                            ConsultarUsuarioPorLoginPortIn consultarUsuarioPorLoginPortIn,
                            CriarUsuarioPortIn criarUsuarioPortIn,
                            AtualizarUsuarioPortIn atualizarUsuarioPortIn,
-                           DeletarUsuarioPortIn deletarUsuarioPortIn){
+                           DeletarUsuarioPortIn deletarUsuarioPortIn) {
         this.validaLoginPortIn = validaLoginPortIn;
         this.atualizarSenhaUsuarioPortIn = atualizarSenhaUsuarioPortIn;
         this.consultarUsuarioPorIdPortIn = consultarUsuarioPorIdPortIn;
@@ -50,11 +63,23 @@ public class UsersController {
     }
 
     @Operation(description = "Endpoint que valida o Login e senha de um Usuario")
-    @ApiResponse(responseCode = "200", description = "Login validado com sucesso!")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorno Sucesso",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_SUCESSO)
+                            })),
+            @ApiResponse(responseCode = "401", description = "Usuário ou senha inválidos",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_USUARIO_SENHA_INVALIDO)
+                            }))})
     @PostMapping("/auth/logins")
     public ResponseEntity<LoginResponse> validaLogin(
             @RequestBody LoginRequest loginRequest
-    ){
+    ) {
         var loginValido = validaLoginPortIn.validaLogin(loginRequest);
 
         return ResponseEntity.ok(loginValido);
@@ -66,40 +91,76 @@ public class UsersController {
     @PutMapping("/{userId}/senha")
     public ResponseEntity<?> atualizaSenhaUsuario(
             @PathVariable("userId") Long userId,
-            @RequestBody AtualizarSenhaUsuarioRequest atualizarUsuarioRequest
-    ){
+            @RequestBody @Valid AtualizarSenhaUsuarioRequest atualizarUsuarioRequest
+    ) {
         atualizarSenhaUsuarioPortIn.atualizar(userId, atualizarUsuarioRequest);
         return ResponseEntity.ok("Senha alterada com sucesso");
     }
 
     @Operation(description = "Endpoint responsavel por Consultar o Id do usuario baseado em seu login")
-    @ApiResponse(responseCode = "200", description = "Retorna os dados de usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna os dados de usuario",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_SUCESSO_CONSULTA_USUARIO_POR_LOGIN)
+                            })),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_NOT_FOUND_CONSULTA_USUARIO_POR_LOGIN)
+                            }))})
     @GetMapping
     public ResponseEntity<ConsultaUsuarioLoginResponse> consultaIdUsuarioPorLogin(
             @Parameter(description = "Login do Usuario para consulta de dados", required = true, in = ParameterIn.QUERY)
             @RequestParam String login
-    ){
+    ) {
         var usuario = consultarUsuarioPorLoginPortIn.consutar(login);
 
         return ResponseEntity.ok(usuario);
     }
 
     @Operation(description = "Endpoint responsavel por Consultar os dados de um Usuarios baseado em seu Id")
-    @ApiResponse(responseCode = "200", description = "Retorna os dados de usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna os dados de usuario",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_SUCESSO_CONSULTA_USUARIO_POR_ID)
+                            })),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_NOT_FOUND_CONSULTA_USUARIO_POR_ID)
+                            }))})
     @GetMapping("/{userId}")
     public ResponseEntity<ConsultaUsuarioIdResponse> consultaUsuario(
-            @PathVariable(value = "userId",required = true) Long userId){
+            @PathVariable(value = "userId", required = true) Long userId) {
         var usuario = consultarUsuarioPorIdPortIn.consultar(userId);
 
         return ResponseEntity.ok(usuario);
     }
 
     @Operation(description = "Endpoint responsavel por Criar um novo Usuario")
-    @ApiResponse(responseCode = "201", description = "Novo usuario criado com sucesso")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Novo usuario criado com sucesso",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_CRIACAO_USUARIO_SUCESSO)
+                            })),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_NOT_FOUND_CONSULTA_USUARIO_POR_ID)
+                            }))})
     @PostMapping
     public ResponseEntity<CriarUsuarioResponse> criaUsuario(
-            @RequestBody CriarUsuarioRequest criarUsuarioRequest
-    ){
+            @RequestBody @Valid CriarUsuarioRequest criarUsuarioRequest
+    ) {
 
         var usuarioCriado = criarUsuarioPortIn.criar(criarUsuarioRequest);
 
@@ -113,17 +174,24 @@ public class UsersController {
     public ResponseEntity<AtualizarUsuarioResponse> atualizaDadosUsuario(
             @PathVariable("userId") Long userId,
             @RequestBody AtualizarUsuarioRequest atualizarUsuarioRequest
-    ){
+    ) {
         var usuarioAtualiza = atualizarUsuarioPortIn.atualizar(userId, atualizarUsuarioRequest);
         return ResponseEntity.ok(usuarioAtualiza);
     }
 
     @Operation(description = "Endpoint responsavel por Deletar um usuario")
-    @ApiResponse(responseCode = "204")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Usuario Removido com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = {
+                                    @ExampleObject(value = RETORNO_NOT_FOUND_NA_EXCLUSAO)
+                            }))})
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> criaEnderecoUsuario(
+    public ResponseEntity<Void> deletaUsuario(
             @PathVariable("userId") Long userId
-    ){
+    ) {
         deletarUsuarioPortIn.deletarUsuario(userId);
         return ResponseEntity.noContent().build();
     }

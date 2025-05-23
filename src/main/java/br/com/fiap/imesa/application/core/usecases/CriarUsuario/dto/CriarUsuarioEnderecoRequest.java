@@ -1,11 +1,23 @@
 package br.com.fiap.imesa.application.core.usecases.CriarUsuario.dto;
 
-public class CriarUsuarioEnderecoRequest {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+public class CriarUsuarioEnderecoRequest {
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String logradouro;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String numero;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String cidade;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String estado;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String cep;
     private String complemento;
     private String bairro;

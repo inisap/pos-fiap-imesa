@@ -3,6 +3,7 @@ package br.com.fiap.imesa.adapters.out;
 import br.com.fiap.imesa.adapters.out.repository.UsuarioRepository;
 import br.com.fiap.imesa.adapters.out.repository.mapper.UsuarioEntityMapper;
 import br.com.fiap.imesa.application.core.domain.UsuarioDomain;
+import br.com.fiap.imesa.application.ports.out.ConsultaUsuarioPorEmailOutport;
 import br.com.fiap.imesa.application.ports.out.ConsultaUsuarioPorIdOutport;
 import br.com.fiap.imesa.application.ports.out.ConsultaUsuarioPorLoginOutport;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class ConsultaUsuarioAdapter implements ConsultaUsuarioPorIdOutport, ConsultaUsuarioPorLoginOutport {
+public class ConsultaUsuarioAdapter implements ConsultaUsuarioPorIdOutport, ConsultaUsuarioPorLoginOutport, ConsultaUsuarioPorEmailOutport {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioEntityMapper usuarioEntityMapper;
@@ -30,6 +31,12 @@ public class ConsultaUsuarioAdapter implements ConsultaUsuarioPorIdOutport, Cons
     @Override
     public Optional<UsuarioDomain> consultarPorId(Long id){
         return usuarioRepository.findById(id)
+                .map(usuarioEntityMapper::toUsuarioDomain);
+    }
+
+    @Override
+    public Optional<UsuarioDomain> consultarPorEmail(String email){
+        return usuarioRepository.findByEmail(email)
                 .map(usuarioEntityMapper::toUsuarioDomain);
     }
 }

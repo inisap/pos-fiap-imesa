@@ -24,22 +24,21 @@ public class AtualizarSenhaUsuarioUseCase implements AtualizarSenhaUsuarioPortIn
     public void atualizar(Long id, AtualizarSenhaUsuarioRequest atualizarSenhaUsuarioRequest){
         var usuarioDomainOptional = consultaUsuarioPorIdOutport.consultarPorId(id);
 
-        usuarioDomainOptional
+        var usuario = usuarioDomainOptional
                 .orElseThrow(() -> new UsuarioNaoEncontradoException("Id de usuario não encontrado"));
 
-        if(atualizarSenhaUsuarioRequest.getSenhaNova()
+        if(!atualizarSenhaUsuarioRequest.getSenhaNova()
                 .equals(atualizarSenhaUsuarioRequest.getConfirmacaoSenhaNova())){
             throw new AlteracaoSenhaDivergenteException("As senha nova não coincide com a confirmação de senha");
         }
 
-        if(usuarioDomainOptional.get().getPassword()
-                .equals(atualizarSenhaUsuarioRequest.getSenhaAntiga())){
-
-            usuarioDomainOptional.get().setPassword(atualizarSenhaUsuarioRequest.getSenhaNova());
-
-            atualizarUsuarioOutport.atualizar(usuarioDomainOptional.get());
+        if (!usuario.getPassword().equals(atualizarSenhaUsuarioRequest.getSenhaAntiga())) {
+            throw new AlteracaoSenhaDivergenteException("A senha antiga não confere");
         }
 
+        usuario.setPassword(atualizarSenhaUsuarioRequest.getSenhaNova());
+
+        atualizarUsuarioOutport.atualizar(usuario);
 
     }
 }

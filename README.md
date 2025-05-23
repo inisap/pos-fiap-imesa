@@ -20,11 +20,9 @@ Certifique-se de ter os seguintes softwares instalados:
 
 git clone https://github.com/inisap/pos-fiap-imesa
 
-### 2. Compile a aplicação localmente utilizando maven
+### 2. Suba os containers com Docker Compose
 
-./mvnw clean package
-
-### 3. Suba os containers com Docker Compose
+acesse a pasta do projeto e execute o comando abaixo:
 
 docker-compose up --build
 
@@ -37,10 +35,10 @@ Postgres:
 
 Host: localhost
 
-Porta: 5432
-Usuário: imesa_user
-Senha: imesa_password
-Database: imesa_db
+- Porta: 5432
+- Usuário: imesa_user
+- Senha: imesa_password
+- Database: imesa_db
 
 # Acessar documentação completa dos endpoints
 

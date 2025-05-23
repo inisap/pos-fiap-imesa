@@ -1,12 +1,29 @@
 package br.com.fiap.imesa.application.core.usecases.CriarUsuario.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class CriarUsuarioRequest {
 
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String nome;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String email;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "não pode ser vazio")
     private String login;
+    @NotNull(message = "é obrigatória")
+    @NotBlank(message = "não pode ser vazio")
     private String password;
+    @NotNull(message = "é obrigatório")
+    @NotBlank(message = "precisa ser 'RESTAURANTE' ou 'CLIENTE'")
     private String tipoUsuario;
+
+    @Valid
+    @NotNull(message = "é obrigatório")
     private CriarUsuarioEnderecoRequest endereco;
 
     public String getNome() {
