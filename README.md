@@ -26,7 +26,7 @@ acesse a pasta do projeto e execute o comando abaixo:
 
 docker-compose up --build
 
-### 4. Acesse a aplicação
+### 3. Acesse a aplicação
 ##### Obs: Utilizamos portas altas para evitar risco de conflito na hora de executar o projeto
 
 API Spring Boot: http://localhost:9000/imesa
