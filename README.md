@@ -45,3 +45,4 @@ Host: localhost
 executar a aplicação e acessar o endpoint via navegador: http://localhost:9000/imesa/swagger-ui/index.html
 
 
+# Collection do postman para testes
