@@ -1,0 +1,1158 @@
+{
+	"info": {
+		"_postman_id": "b5897b64-42f1-4a69-b9c5-b931aa44b086",
+		"name": "Post Tech Fiap Imesa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39180784"
+	},
+	"item": [
+		{
+			"name": "Cenário 1 - Criação de um Novo Usuário",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Diego Pasini\",\n\t\"email\": \"diego_t_pasini@hotmail.com\",\n\t\"login\": \"pasini\",\n\t\"password\": \"pasini123\",\n\t\"tipoUsuario\": \"CLIENTE\",\n\t\"endereco\": {\n\t\t\"logradouro\": \"Rua Paraguacu Paulista\",\n\t\t\"numero\": \"993\",\n\t\t\"complemento\": \"casa 2\",\n\t\t\"cep\": \"06364550\",\n\t\t\"cidade\": \"Carapicuiba\",\n\t\t\"bairro\":\"Jardim Ana Estela\",\n\t\t\"estado\": \"São Paulo\"\n\t}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Informar um usuário que ainda não foi criado na aplicação"
+		},
+		{
+			"name": "Cenário 2 - Tentativa de Criar um Usuario com o mesmo email",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa dois\",\n    \"email\": \"cenario2@hotmail.com\",\n    \"login\": \"teste002\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar inserir um e-mail que ja esta cadastrado na base para outro usuário"
+		},
+		{
+			"name": "Cenário 3 - Tentativa de Criar um Usuario com o mesmo login",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa tres\",\n    \"email\": \"testecenario003@hotmail.com\",\n    \"login\": \"testecenario3\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar inserir um login que ja esta cadastrado na base para outro usuário"
+		},
+		{
+			"name": "Cenário 4 - Tentativa de Criar um Usuario sem nome",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"cenario4@hotmail.com\",\n\t\"login\": \"cenario4\",\n\t\"password\": \"pasini123\",\n\t\"tipoUsuario\": \"CLIENTE\",\n\t\"endereco\": {\n\t\t\"logradouro\": \"Rua Paraguacu Paulista\",\n\t\t\"numero\": \"993\",\n\t\t\"complemento\": \"casa 2\",\n\t\t\"cep\": \"06364550\",\n\t\t\"cidade\": \"Carapicuiba\",\n\t\t\"bairro\":\"Jardim Ana Estela\",\n\t\t\"estado\": \"São Paulo\"\n\t}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar inserir um usuario sem nome"
+		},
+		{
+			"name": "Cenário 5 - Tentativa de Criar um Usuario sem email",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"pessoa cinco\",\n\t\"login\": \"cenario5\",\n\t\"password\": \"pasini123\",\n\t\"tipoUsuario\": \"CLIENTE\",\n\t\"endereco\": {\n\t\t\"logradouro\": \"Rua Paraguacu Paulista\",\n\t\t\"numero\": \"993\",\n\t\t\"complemento\": \"casa 2\",\n\t\t\"cep\": \"06364550\",\n\t\t\"cidade\": \"Carapicuiba\",\n\t\t\"bairro\":\"Jardim Ana Estela\",\n\t\t\"estado\": \"São Paulo\"\n\t}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem e-mail"
+		},
+		{
+			"name": "Cenário 6 - Tentativa de Criar um Usuario sem login",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"cenario seis\",\n\t\"email\": \"cenario6@hotmail.com\",\n\t\"password\": \"pasini123\",\n\t\"tipoUsuario\": \"CLIENTE\",\n\t\"endereco\": {\n\t\t\"logradouro\": \"Rua Paraguacu Paulista\",\n\t\t\"numero\": \"993\",\n\t\t\"complemento\": \"casa 2\",\n\t\t\"cep\": \"06364550\",\n\t\t\"cidade\": \"Carapicuiba\",\n\t\t\"bairro\":\"Jardim Ana Estela\",\n\t\t\"estado\": \"São Paulo\"\n\t}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem login"
+		},
+		{
+			"name": "Cenário 7 - Tentativa de Criar um Usuario sem password",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa sete\",\n    \"email\": \"cenario7@hotmail.com\",\n    \"login\": \"cenario7\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem password"
+		},
+		{
+			"name": "Cenário 8 - Tentativa de Criar um Usuario sem tipoUsuario",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa oito\",\n    \"email\": \"cenario8@hotmail.com\",\n    \"login\": \"cenario8\",\n    \"password\": \"pasini123\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem tipoUsuario"
+		},
+		{
+			"name": "Cenário 9 - Tentativa de Criar um Usuario sem endereco",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa nove\",\n    \"email\": \"pessoa9@hotmail.com\",\n    \"login\": \"pessoa9\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem endereço"
+		},
+		{
+			"name": "Cenário 10 - Tentativa de Criar um Usuario sem logradouro",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa dez\",\n    \"email\": \"pessoa10@hotmail.com\",\n    \"login\": \"pessoa10\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem logradouro"
+		},
+		{
+			"name": "Cenário 11 - Tentativa de Criar um Usuario sem numero",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa onze\",\n    \"email\": \"pessoa11@hotmail.com\",\n    \"login\": \"pessoa11\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar usuario sem número"
+		},
+		{
+			"name": "Cenário 12 - Tentativa de Criar um Usuario sem cep",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa doze\",\n    \"email\": \"pessoa12@hotmail.com\",\n    \"login\": \"pessoa12\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem cep"
+		},
+		{
+			"name": "Cenário 13 - Tentativa de Criar um Usuario sem cidade",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa treze\",\n    \"email\": \"pessoa13@hotmail.com\",\n    \"login\": \"pessoa13\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"bairro\": \"Jardim Ana Estela\",\n        \"estado\": \"São Paulo\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem cidade"
+		},
+		{
+			"name": "Cenário 14 - Tentativa de Criar um Usuario sem estado",
+			"item": [
+				{
+					"name": "[1] Endpoint responsável por Criar um novo Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"pessoa quatorze\",\n    \"email\": \"pessoa14@hotmail.com\",\n    \"login\": \"pessoa14\",\n    \"password\": \"pasini123\",\n    \"tipoUsuario\": \"CLIENTE\",\n    \"endereco\": {\n        \"logradouro\": \"Rua Paraguacu Paulista\",\n        \"numero\": \"993\",\n        \"complemento\": \"casa 2\",\n        \"cep\": \"06364550\",\n        \"cidade\": \"Carapicuiba\",\n        \"bairro\": \"Jardim Ana Estela\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar criar um usuario sem estado"
+		},
+		{
+			"name": "Cenário 15 - Tentativa de login com usuario e senha correto",
+			"item": [
+				{
+					"name": "[2] Endpoint que valida o Login e senha de um Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"login\": \"cenario15\",\r\n\t\"password\": \"pessoa15123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/auth/logins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"auth",
+								"logins"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar fazer login com usuario e senha correto"
+		},
+		{
+			"name": "Cenário 16 - Tentativa de login com usuario incorreto",
+			"item": [
+				{
+					"name": "[2] Endpoint que valida o Login e senha de um Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"login\": \"cenario16\",\r\n\t\"password\": \"pasini123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/auth/logins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"auth",
+								"logins"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar fazer login com usuario incorreto"
+		},
+		{
+			"name": "Cenário 17 - Tentativa de login com senha incorreta",
+			"item": [
+				{
+					"name": "[2] Endpoint que valida o Login e senha de um Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"login\": \"cenario17\",\r\n\t\"password\": \"asdasd\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/auth/logins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"auth",
+								"logins"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar fazer login com senha incorreta"
+		},
+		{
+			"name": "Cenário 18 - Atualizando senha com sucesso",
+			"item": [
+				{
+					"name": "[3] Endpoint que atualiza a senha de um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAntiga\": \"senha18\",\r\n    \"senhaNova\": \"senha18nova\",\r\n    \"confirmacaoSenhaNova\": \"senha18nova\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/4/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"4",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Atualizando senha com sucesso"
+		},
+		{
+			"name": "Cenário 19 - Tentativa de atualizar a senha com senha antiga invalida",
+			"item": [
+				{
+					"name": "[3] Endpoint que atualiza a senha de um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"senhaAntiga\":\"5756756\",\r\n\t\"senhaNova\":\"senha19\",\r\n\t\"confirmacaoSenhaNova\":\"senha19\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/5/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"5",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar atualizar a senha, porém passando a senha antiga inválida"
+		},
+		{
+			"name": "Cenário 20 - Tentativa de atualizar a senha com senha com divergencia",
+			"item": [
+				{
+					"name": "[3] Endpoint que atualiza a senha de um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAntiga\": \"senha20\",\r\n    \"senhaNova\": \"senha20nova\",\r\n    \"confirmacaoSenhaNova\": \"senha20errada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/1/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"1",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentativa de alterar a senha colocando a senha nova divergente da confirmacaoSenhaNova"
+		},
+		{
+			"name": "Cenário 21 - Tentativa de atualizar a senha passando id de usuario inexistente",
+			"item": [
+				{
+					"name": "[3] Endpoint que atualiza a senha de um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAntiga\": \"senha21\",\r\n    \"senhaNova\": \"senha21nova\",\r\n    \"confirmacaoSenhaNova\": \"senha21nova\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/99999/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"99999",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar atualizar a senha passando um id de usuario que não existe"
+		},
+		{
+			"name": "Cenário 22 - Atualizando dados de um usuario com sucesso",
+			"item": [
+				{
+					"name": "[4] Endpoint responsavel por atualizar os dados de um Usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"pessoa vinte e dois\",\r\n\t\"email\": \"pessoa22@hotmail.com\",\r\n\t\"login\": \"pessoa22\",\r\n\t\"endereco\": {\r\n\t\t\"logradouro\": \"Rua da Casa do Vint e Dois\",\r\n\t\t\"numero\": \"22\",\r\n\t\t\"complemento\": \"casa 22\",\r\n\t\t\"cep\": \"06364550\",\r\n\t\t\"cidade\": \"Carapicuiba\",\r\n\t\t\"bairro\":\"Jardim Ana Estela\",\r\n\t\t\"estado\": \"São Paulo\"\r\n\t}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Atualizar os dados de um usuario com sucesso"
+		},
+		{
+			"name": "Cenário 23 - Atualizando dados de um usuario passando id de usuario inexistente",
+			"item": [
+				{
+					"name": "[4] Endpoint responsavel por atualizar os dados de um Usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"nome\": \"pessoa vinte e tres\",\r\n\t\"email\": \"pessoa23@hotmail.com\",\r\n\t\"login\": \"pessoa23\",\r\n\t\"endereco\": {\r\n\t\t\"logradouro\": \"Rua Paraguacu Paulista\",\r\n\t\t\"numero\": \"993\",\r\n\t\t\"complemento\": \"casa 2\",\r\n\t\t\"cep\": \"06364550\",\r\n\t\t\"cidade\": \"Carapicuiba\",\r\n\t\t\"bairro\":\"Jardim Ana Estela\",\r\n\t\t\"estado\": \"São Paulo\"\r\n\t}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/98765",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"98765"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar atualizar os dados de um usuario pasando um id que não existe"
+		},
+		{
+			"name": "Cenário 24 - Consultando dados de um usuario com base em id",
+			"item": [
+				{
+					"name": "[5] Endpoint responsavel por Consultar os dados de um Usuarios baseado em seu Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Consultar os dados de um usuario com base no userId com sucesso"
+		},
+		{
+			"name": "Cenário 25 - Consultando dados de um usuario com base em id inexistente",
+			"item": [
+				{
+					"name": "[5] Endpoint responsavel por Consultar os dados de um Usuarios baseado em seu Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/99876",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"99876"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentar consultar os dados de um usuario com base no userId inexistente na base"
+		},
+		{
+			"name": "Cenário 26 - Consultando dados de um usuario com base em login",
+			"item": [
+				{
+					"name": "[6] Endpoint responsavel por Consultar o Id do usuario baseado em seu login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users?login=cenario26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "cenario26"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Consultando os dados de um usuario com base em um login"
+		},
+		{
+			"name": "Cenário 27 - Consultando dados de um usuario com base em login que não existe",
+			"item": [
+				{
+					"name": "[6] Endpoint responsavel por Consultar o Id do usuario baseado em seu login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users?login=usuario123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "usuario123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentando consultar os dados de um usuario com base em login que não existe na base"
+		},
+		{
+			"name": "Cenário 28 - Deletando um usuario com sucesso",
+			"item": [
+				{
+					"name": "[7] Endpoint responsavel por Deletar um usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Deletando um usuario com sucesso"
+		},
+		{
+			"name": "Cenário 29 - Deletando um usuario com id inexistente",
+			"item": [
+				{
+					"name": "[7] Endpoint responsavel por Deletar um usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users/987321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users",
+								"987321"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Tentativa de deletar um usuario passando id inexistente"
+		}
+	]
+}
