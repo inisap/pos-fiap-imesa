@@ -25,7 +25,7 @@ public class AtualizaSenhaUsuarioUseCase {
         var retornoUsuarioOpt = consultaUsuarioPorIdRepository.consultar(atualizaSenhaUsuarioCommand.getIdUsuario());
 
         if(retornoUsuarioOpt.isEmpty()){
-            throw new UsuarioNaoEncontradoException("Usuário não encontrado");
+            throw new UsuarioNaoEncontradoException(null, atualizaSenhaUsuarioCommand.getIdUsuario());
         }
 
         var usuarioSenhaAlterar = retornoUsuarioOpt.get();

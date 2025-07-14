@@ -6,9 +6,9 @@ import br.com.fiap.imesa.application.usecases.command.GravarEnderecoCommand;
 public class EnderecoRequestMapper {
 
     public static GravarEnderecoCommand dtoToCommand(Long idUsuario, EnderecoDtoRequest enderecoDtoRequest){
-        return new GravarEnderecoCommand(
-                idUsuario,
-                enderecoDtoRequest
-        );
+        return GravarEnderecoCommand.builder()
+                .usuarioId(idUsuario)
+                .enderecoDtoRequest(enderecoDtoRequest)
+                .build();
     }
 }

@@ -7,7 +7,7 @@ public class CriaTipoUsuarioRequestMapper {
 
     public static CriarTipoUsuarioCommand dtoToCommand(TipoUsuarioDtoRequest tipoUsuarioDtoRequest){
         return CriarTipoUsuarioCommand.builder()
-                .nome(tipoUsuarioDtoRequest.getNome())
+                .nome(tipoUsuarioDtoRequest.getDescricaoTipoUsuario())
                 .build();
     }
 }

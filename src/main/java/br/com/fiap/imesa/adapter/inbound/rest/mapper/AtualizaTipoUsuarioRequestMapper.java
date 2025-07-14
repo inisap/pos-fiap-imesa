@@ -8,7 +8,7 @@ public class AtualizaTipoUsuarioRequestMapper {
     public static AtualizarTipoUsuarioCommand dtoToCommand(Integer idTipoUsuario, TipoUsuarioDtoRequest tipoUsuarioDtoRequest){
         return AtualizarTipoUsuarioCommand.builder()
                 .id(idTipoUsuario)
-                .nome(tipoUsuarioDtoRequest.getNome())
+                .nome(tipoUsuarioDtoRequest.getDescricaoTipoUsuario())
                 .build();
     }
 }

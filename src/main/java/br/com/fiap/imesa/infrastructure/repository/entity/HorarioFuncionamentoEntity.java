@@ -2,17 +2,15 @@ package br.com.fiap.imesa.infrastructure.repository.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "horario_funcionamento")
+@Table(name = "horarios_funcionamentos")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class HorarioFuncionamentoEntity {

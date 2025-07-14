@@ -19,7 +19,7 @@ public class DeletarTipoUsuarioUseCase {
     public void run(Integer idTipoUsuario){
 
         var tipoCozinhaDeletar = consultaTipoUsuarioPorIdRepository.consultar(idTipoUsuario)
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException("Id tipo Usuário não encontrado"));
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, idTipoUsuario));
 
         deletaTipoUsuarioRepository.deletar(tipoCozinhaDeletar);
     }

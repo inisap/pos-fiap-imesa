@@ -14,8 +14,8 @@ public class ConsultarTodosTiposCozinhaPresenter {
 
         for (TipoCozinha tipoUsuario : tiposCozinhaList){
             var tipoCozinhaDtoResponse = TipoCozinhaDtoResponse.builder()
-                    .id(tipoUsuario.getId())
-                    .nomeTipo(tipoUsuario.getNome())
+                    .codigoTipoCozinha(tipoUsuario.getId())
+                    .descricaoTipoCozinha(tipoUsuario.getNome())
                     .build();
 
             list.add(tipoCozinhaDtoResponse);

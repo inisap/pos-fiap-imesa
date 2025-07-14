@@ -26,7 +26,7 @@ public class AtualizaTipoUsuarioUseCase {
 
         //validando se existe o tipo na base a ser alterado
         consultaTipoUsuarioPorIdRepository.consultar(command.getId())
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException("Id do Tipo de Usuario nao encontrado"));
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getId()));
 
         var tipoUsuario = AtualizarTipoUsuarioCommandMapper.commandToDomain(command);
 

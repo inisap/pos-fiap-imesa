@@ -27,7 +27,7 @@ public class SalvaEnderecoUsuarioUseCase {
     public Endereco run(GravarEnderecoCommand enderecoCommand) {
 
         consultaUsuarioPorIdRepository.consultar(enderecoCommand.getUsuarioId())
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuario não existe para cadastrar endereço"));
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(null, enderecoCommand.getUsuarioId()));
 
         var end = CriarAtualizarEnderecoUsuarioCommandMapper.commandToDomain(enderecoCommand);
 

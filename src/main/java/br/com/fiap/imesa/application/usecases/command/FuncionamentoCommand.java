@@ -1,15 +1,13 @@
-package br.com.fiap.imesa.domain.entities.restaurante;
+package br.com.fiap.imesa.application.usecases.command;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalTime;
 
 @Builder
 @Getter
-@Setter
-public class HorarioFuncionamento {
+public class FuncionamentoCommand {
 
     private Integer diaSemana;
     private LocalTime horaAbertura;

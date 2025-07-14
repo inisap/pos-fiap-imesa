@@ -8,7 +8,7 @@ public class CriarTipoCozinhaCommandMapper {
     public static TipoCozinha commandToDomain(CriarTipoCozinhaCommand command){
         return TipoCozinha.builder()
                 .id(null)
-                .nome(command.getNome())
+                .nome(command.getDescricaoTipoCozinha())
                 .build();
     }
 }

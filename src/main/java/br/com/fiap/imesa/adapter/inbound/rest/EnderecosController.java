@@ -3,7 +3,8 @@ package br.com.fiap.imesa.adapter.inbound.rest;
 import br.com.fiap.imesa.adapter.inbound.rest.dto.EnderecoDtoRequest;
 import br.com.fiap.imesa.adapter.inbound.rest.dto.EnderecoDtoResponse;
 import br.com.fiap.imesa.adapter.inbound.rest.mapper.EnderecoRequestMapper;
-import br.com.fiap.imesa.adapter.inbound.rest.presenter.CriarEnderecoPresenter;
+import br.com.fiap.imesa.adapter.inbound.rest.presenter.EnderecoPresenter;
+import br.com.fiap.imesa.application.usecases.ConsultaEnderecoUsuarioPorIdUsuarioUseCase;
 import br.com.fiap.imesa.application.usecases.SalvaEnderecoUsuarioUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.*;
 public class EnderecosController {
 
    private final SalvaEnderecoUsuarioUseCase salvaEnderecoUsuarioUseCase;
-    public EnderecosController(SalvaEnderecoUsuarioUseCase salvaEnderecoUsuarioUseCase){
+   private final ConsultaEnderecoUsuarioPorIdUsuarioUseCase consultaEnderecoUsuarioPorIdUsuarioUseCase;
+    public EnderecosController(SalvaEnderecoUsuarioUseCase salvaEnderecoUsuarioUseCase,
+                               ConsultaEnderecoUsuarioPorIdUsuarioUseCase consultaEnderecoUsuarioPorIdUsuarioUseCase){
         this.salvaEnderecoUsuarioUseCase = salvaEnderecoUsuarioUseCase;
+        this.consultaEnderecoUsuarioPorIdUsuarioUseCase = consultaEnderecoUsuarioPorIdUsuarioUseCase;
     }
 
     @Operation(description = "Endpoint responsavel por Criar um Endereco associando a um Usuario")
@@ -35,8 +39,19 @@ public class EnderecosController {
         var enderecoCriado = salvaEnderecoUsuarioUseCase.run(enderecoCommand);
 
         //convertendo o domain para dto para retornar para o chamador
-        return ResponseEntity.ok(CriarEnderecoPresenter.toDto(enderecoCriado));
+        return ResponseEntity.ok(EnderecoPresenter.toDto(enderecoCriado));
 
+    }
+
+    @Operation(description = "Endpoint responsavel por consultar o endereco associando a um Usuario")
+    @GetMapping("/{userId}/enderecos")
+    public ResponseEntity<EnderecoDtoResponse> consultarEnderecoAssociadoUsuario(
+            @PathVariable("userId") Long userId
+    ) {
+
+        var endereco = consultaEnderecoUsuarioPorIdUsuarioUseCase.run(userId);
+
+        return ResponseEntity.ok(EnderecoPresenter.toDto(endereco));
     }
 
 }

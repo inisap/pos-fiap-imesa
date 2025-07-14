@@ -6,12 +6,14 @@ import br.com.fiap.imesa.application.usecases.command.CriarUsuarioCommand;
 public class CriaUsuarioRequestMapper {
 
     public static CriarUsuarioCommand dtoToCommand(UsuarioDtoRequest usuarioDtoRequest){
-        return new CriarUsuarioCommand(
-                usuarioDtoRequest.getNome(),
-                usuarioDtoRequest.getEmail(),
-                usuarioDtoRequest.getLogin(),
-                usuarioDtoRequest.getPassword(),
-                usuarioDtoRequest.getTipoUsuario()
-        );
+        return CriarUsuarioCommand.builder()
+                .nome(usuarioDtoRequest.getNome())
+                .email(usuarioDtoRequest.getEmail())
+                .login(usuarioDtoRequest.getLogin())
+                .password(usuarioDtoRequest.getPassword())
+                .codigoTipoUsuario(usuarioDtoRequest.getCodigoTipoUsuario())
+                .build();
+
+
     }
 }

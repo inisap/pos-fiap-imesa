@@ -1,21 +1,12 @@
 package br.com.fiap.imesa.application.usecases.command;
 
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class CriarTipoCozinhaCommand {
 
-    private String nome;
+    private String descricaoTipoCozinha;
 
-    public CriarTipoCozinhaCommand(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }

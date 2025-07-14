@@ -2,8 +2,12 @@ package br.com.fiap.imesa.adapter.inbound.rest.dto;
 
 import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Builder
+@Getter
+@Setter
 public class UsuarioDtoResponse {
 
     private Long id;

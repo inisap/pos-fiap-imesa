@@ -1,8 +1,10 @@
 package br.com.fiap.imesa.adapter.inbound.rest.dto;
 
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class EnderecoDtoResponse {
     private Long id;
     private Long usuarioId;

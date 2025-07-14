@@ -1,5 +1,6 @@
 package br.com.fiap.imesa.application.usecases;
 
+import br.com.fiap.imesa.application.exception.LoginNaoEncontradoException;
 import br.com.fiap.imesa.application.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.imesa.domain.entities.usuario.Usuario;
 import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorLoginRepository;
@@ -18,6 +19,6 @@ public class ConsultaUsuarioPorLoginUseCase {
         var retornoUsuarioOpt = consultaUsuarioPorLoginRepository.consultar(login);
 
         return retornoUsuarioOpt
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
+                .orElseThrow(() -> new LoginNaoEncontradoException(null, login));
     }
 }

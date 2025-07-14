@@ -53,10 +53,10 @@ public class UsuariosController {
         //chamando o usecase passando o command
         var usuarioCriado = criarUsuarioUseCase.run(usuarioCommand);
 
-        URI location = URI.create("/users/" + usuarioCriado.getId());
-
         //convertendo o domain para dto para retornar para o chamador
-        return ResponseEntity.created(location).body(CriarUsuarioPresenter.toDto(usuarioCriado));
+        var retorno = CriarUsuarioPresenter.toDto(usuarioCriado);
+
+        return ResponseEntity.ok().body(retorno);
     }
 
     @Operation(description = "Endpoint responsavel por Consultar o Id do usuario baseado em seu login")
@@ -72,7 +72,7 @@ public class UsuariosController {
         //convertendo o domain para dto para retornar para o chamador
         var usuarioDtoResponse = ConsultarUsuarioLoginPresenter.toDto(usuarioDomainRetorno);
 
-        return ResponseEntity.ok(usuarioDtoResponse);
+        return ResponseEntity.ok().body(usuarioDtoResponse);
     }
 
     @Operation(description = "Endpoint responsavel por Consultar os dados de um Usuarios baseado em seu Id")
@@ -87,7 +87,7 @@ public class UsuariosController {
         //convertendo o domain para dto para retornar para o chamador
         var usuarioDtoResponse = ConsultarUsuarioPorIdPresenter.toDto(usuarioDomainRetorno);
 
-        return ResponseEntity.ok(usuarioDtoResponse);
+        return ResponseEntity.ok().body(usuarioDtoResponse);
     }
 
     @Operation(description = "Endpoint responsavel por atualizar os dados de um Usuario")

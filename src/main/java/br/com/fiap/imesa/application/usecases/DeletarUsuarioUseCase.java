@@ -28,7 +28,7 @@ public class DeletarUsuarioUseCase {
     public void run(Long idUsuario){
 
         var usuarioDeletar = consultaUsuarioPorIdRepository.consultar(idUsuario)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(null, idUsuario));
 
         var enderecoDeletar = consultaEnderecoPorIdUsuarioRepository.consultar(idUsuario);
 

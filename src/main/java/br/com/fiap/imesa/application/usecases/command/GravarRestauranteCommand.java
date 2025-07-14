@@ -11,6 +11,5 @@ public class GravarRestauranteCommand {
 
     private String nome;
     private Integer tipoCozinha;
-    private List<HorarioFuncionamentoCommand> horarioFuncionamento;
     private Long usuarioId;
 }

@@ -8,7 +8,7 @@ public class CriaTipoCozinhaRequestMapper {
 
     public static CriarTipoCozinhaCommand dtoToCommand(TipoCozinhaDtoRequest tipoCozinhaDtoRequest){
         return CriarTipoCozinhaCommand.builder()
-                .nome(tipoCozinhaDtoRequest.getNome())
+                .descricaoTipoCozinha(tipoCozinhaDtoRequest.getNome())
                 .build();
     }
 }

@@ -8,11 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TipoUsuarioDtoResponse {
-    private Integer id;
-    private String nomeTipo;
+    private Integer codigoTipoUsuario;
+    private String descricaoTipoUsuario;
 
-    public TipoUsuarioDtoResponse(Integer id, String nomeTipo) {
-        this.id = id;
-        this.nomeTipo = nomeTipo;
-    }
 }

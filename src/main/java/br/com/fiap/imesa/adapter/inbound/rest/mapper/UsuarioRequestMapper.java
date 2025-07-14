@@ -3,6 +3,7 @@ package br.com.fiap.imesa.adapter.inbound.rest.mapper;
 import br.com.fiap.imesa.adapter.inbound.rest.dto.AtualizarUsuarioDtoRequest;
 import br.com.fiap.imesa.adapter.inbound.rest.dto.LoginDtoRequest;
 import br.com.fiap.imesa.adapter.inbound.rest.dto.UsuarioDtoRequest;
+import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
 import br.com.fiap.imesa.domain.entities.usuario.Usuario;
 
 public class UsuarioRequestMapper {
@@ -10,12 +11,16 @@ public class UsuarioRequestMapper {
     //Utilizado para construir o dominio a partir de um DTO
     public static Usuario criarUsuarioToDomain(UsuarioDtoRequest usuarioDtoRequest){
 
+        var tipoUsuario = TipoUsuario.builder()
+                .id(usuarioDtoRequest.getCodigoTipoUsuario())
+                .build();
+
         return
                 Usuario.builder()
                         .nome(usuarioDtoRequest.getNome())
                         .email(usuarioDtoRequest.getEmail())
                         .login(usuarioDtoRequest.getLogin())
-                        .tipoUsuario(usuarioDtoRequest.getTipoUsuario())
+                        .tipoUsuario(tipoUsuario)
                         .build();
     }
 

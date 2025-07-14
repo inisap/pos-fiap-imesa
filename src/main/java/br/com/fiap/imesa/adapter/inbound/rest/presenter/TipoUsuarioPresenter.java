@@ -10,8 +10,8 @@ public class TipoUsuarioPresenter {
 
 
         return TipoUsuarioDtoResponse.builder()
-                .id(tipoUsuario.getId())
-                .nomeTipo(tipoUsuario.getNome())
+                .codigoTipoUsuario(tipoUsuario.getId())
+                .descricaoTipoUsuario(tipoUsuario.getNome())
                 .build();
     }
 }

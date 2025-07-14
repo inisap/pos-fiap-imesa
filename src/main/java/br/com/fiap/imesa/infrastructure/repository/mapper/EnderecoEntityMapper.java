@@ -22,7 +22,10 @@ public class EnderecoEntityMapper {
 
     public static EnderecoEntity toEntity(Endereco endereco) {
 
+        var idEndereco = endereco.getId() != null ? endereco.getId() : null;
+
         return EnderecoEntity.builder()
+                .id(idEndereco)
                 .usuario(endereco.getUsuarioId())
                 .cep(endereco.getCep())
                 .logradouro(endereco.getLogradouro())

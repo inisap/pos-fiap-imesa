@@ -3,15 +3,12 @@ package br.com.fiap.imesa.adapter.inbound.rest.dto;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Builder
 public class HorarioFuncionamentoDtoResponse {
 
-    private Integer diaSemana;
-    private LocalTime horaAbertura;
-    private LocalTime horaFechamento;
-    private Boolean flagDiaAberto;
+    private List<HorarioFuncionamentoDiarioDtoResponse> horariosFuncionamento;
 
 }

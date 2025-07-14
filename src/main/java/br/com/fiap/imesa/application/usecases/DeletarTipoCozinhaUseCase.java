@@ -1,5 +1,6 @@
 package br.com.fiap.imesa.application.usecases;
 
+import br.com.fiap.imesa.application.exception.TipoCozinhaNaoEncontradoException;
 import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.domain.gateway.IConsultaTipoCozinhaPorIdRepository;
 import br.com.fiap.imesa.domain.gateway.IConsultaTipoUsuarioPorIdRepository;
@@ -21,7 +22,7 @@ public class DeletarTipoCozinhaUseCase {
     public void run(Integer idTipoCozinha){
 
         var tipoCozinhaDeletar = consultaTipoCozinhaPorIdRepository.consultar(idTipoCozinha)
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException("Id tipo Cozinha não encontrado"));
+                .orElseThrow(() -> new TipoCozinhaNaoEncontradoException(null, idTipoCozinha));
 
         deletaTipoCozinhaRepository.deletar(tipoCozinhaDeletar);
     }

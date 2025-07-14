@@ -2,6 +2,7 @@ package br.com.fiap.imesa.adapter.inbound.rest.presenter;
 
 import br.com.fiap.imesa.adapter.inbound.rest.dto.LoginDtoResponse;
 import br.com.fiap.imesa.domain.entities.usuario.Usuario;
+import lombok.Getter;
 
 public class AutenticacaoUsuarioPresenter {
 

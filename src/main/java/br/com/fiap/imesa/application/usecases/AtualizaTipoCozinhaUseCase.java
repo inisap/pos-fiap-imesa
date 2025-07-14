@@ -1,5 +1,6 @@
 package br.com.fiap.imesa.application.usecases;
 
+import br.com.fiap.imesa.application.exception.TipoCozinhaNaoEncontradoException;
 import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.application.mapper.AtualizarTipoCozinhaCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.AtualizarTipoCozinhaCommand;
@@ -24,7 +25,7 @@ public class AtualizaTipoCozinhaUseCase {
 
         //validando se existe o tipo na base a ser alterado
         consultaTipoCozinhaPorIdRepository.consultar(command.getId())
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException("Id do Tipo de Usuario nao encontrado"));
+                .orElseThrow(() -> new TipoCozinhaNaoEncontradoException(null, command.getId()));
 
         var tipoCozinha = AtualizarTipoCozinhaCommandMapper.commandToDomain(command);
 

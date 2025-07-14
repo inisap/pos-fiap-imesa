@@ -19,6 +19,6 @@ public class ConsultaUsuarioPorIdUseCase {
         var retornoUsuarioOpt = consultaUsuarioPorIdRepository.consultar(id);
 
         return retornoUsuarioOpt
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(null, id));
     }
 }

@@ -10,8 +10,8 @@ public class TipoCozinhaPresenter {
 
 
         return TipoCozinhaDtoResponse.builder()
-                .id(tipoCozinha.getId())
-                .nomeTipo(tipoCozinha.getNome())
+                .codigoTipoCozinha(tipoCozinha.getId())
+                .descricaoTipoCozinha(tipoCozinha.getNome())
                 .build();
     }
 }
