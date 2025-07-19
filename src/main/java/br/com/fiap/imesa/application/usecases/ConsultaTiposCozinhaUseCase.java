@@ -1,9 +1,7 @@
 package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.domain.entities.cozinha.TipoCozinha;
-import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
 import br.com.fiap.imesa.domain.gateway.IConsultaTodosTipoCozinhaRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaTodosTipoUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package br.com.fiap.imesa.application.usecases;
 
-import br.com.fiap.imesa.application.exception.ConflitoChaveUnicaException;
 import br.com.fiap.imesa.application.exception.DuplicacaoEmailJaCadastradoException;
 import br.com.fiap.imesa.application.exception.DuplicacaoLoginJaCadastradoException;
 import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;

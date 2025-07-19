@@ -2,9 +2,7 @@ package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.application.mapper.AtualizarTipoUsuarioCommandMapper;
-import br.com.fiap.imesa.application.mapper.CriarTipoUsuarioCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.AtualizarTipoUsuarioCommand;
-import br.com.fiap.imesa.application.usecases.command.CriarTipoUsuarioCommand;
 import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
 import br.com.fiap.imesa.domain.gateway.IConsultaTipoUsuarioPorIdRepository;
 import br.com.fiap.imesa.domain.gateway.ISalvaTipoUsuarioRepository;

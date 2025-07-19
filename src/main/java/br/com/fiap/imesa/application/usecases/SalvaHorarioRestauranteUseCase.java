@@ -7,26 +7,24 @@ import br.com.fiap.imesa.application.usecases.command.HorarioFuncionamentoComman
 import br.com.fiap.imesa.domain.entities.horarioFuncionamento.HorarioFuncionamento;
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
 import br.com.fiap.imesa.domain.gateway.IConsultaHorarioRestaurantePorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaRestauranteRepository;
+import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
 import br.com.fiap.imesa.domain.gateway.ISalvaHorarioFuncionamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
 public class SalvaHorarioRestauranteUseCase {
 
     private final ISalvaHorarioFuncionamentoRepository salvaHorarioFuncionamentoRepository;
-    private final IConsultaRestauranteRepository consultaRestauranteRepository;
+    private final IRestauranteRepository consultaRestauranteRepository;
     private final IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository;
 
     public SalvaHorarioRestauranteUseCase(ISalvaHorarioFuncionamentoRepository salvaHorarioFuncionamentoRepository,
-                                          IConsultaRestauranteRepository consultaRestauranteRepository,
+                                          IRestauranteRepository consultaRestauranteRepository,
                                           IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository) {
         this.salvaHorarioFuncionamentoRepository = salvaHorarioFuncionamentoRepository;
         this.consultaRestauranteRepository = consultaRestauranteRepository;

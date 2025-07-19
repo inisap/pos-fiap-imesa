@@ -64,5 +64,25 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
+    @ExceptionHandler(CardapioNaoEncontradoException.class)
+    public ResponseEntity<String> CardapioNaoEncontrado(CardapioNaoEncontradoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CardapioNaoExisteParaRestauranteException.class)
+    public ResponseEntity<String> CardapioNaoExisteParaRestaurante(CardapioNaoExisteParaRestauranteException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CombinacaoCardarpioERestauranteNaoExisteException.class)
+    public ResponseEntity<String> CombinacaoCardarpioERestauranteNaoExiste(CombinacaoCardarpioERestauranteNaoExisteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CombinacaoItemCardapioEIdCardarpioNaoExisteException.class)
+    public ResponseEntity<String> CombinacaoItemCardapioEIdCardarpioNaoExiste(CombinacaoItemCardapioEIdCardarpioNaoExisteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
 
 }

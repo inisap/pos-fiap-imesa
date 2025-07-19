@@ -1,11 +1,8 @@
 package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.application.exception.TipoCozinhaNaoEncontradoException;
-import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.domain.gateway.IConsultaTipoCozinhaPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaTipoUsuarioPorIdRepository;
 import br.com.fiap.imesa.domain.gateway.IDeletaTipoCozinhaRepository;
-import br.com.fiap.imesa.domain.gateway.IDeletaTipoUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service

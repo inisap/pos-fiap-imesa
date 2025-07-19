@@ -1,30 +1,14 @@
 package br.com.fiap.imesa.domain.entities.cardapio;
 
-import java.util.List;
+import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
+import lombok.Builder;
+import lombok.Data;
 
+@Data
+@Builder
 public class Cardapio {
 
     private Long codigoCardapio;
-    private List<ItemCardapio> itemCardapioList;
-
-    public Cardapio(Long codigoCardapio, List<ItemCardapio> itemCardapioList) {
-        this.codigoCardapio = codigoCardapio;
-        this.itemCardapioList = itemCardapioList;
-    }
-
-    public Long getCodigoCardapio() {
-        return codigoCardapio;
-    }
-
-    public void setCodigoCardapio(Long codigoCardapio) {
-        this.codigoCardapio = codigoCardapio;
-    }
-
-    public List<ItemCardapio> getItemCardapioList() {
-        return itemCardapioList;
-    }
-
-    public void setItemCardapioList(List<ItemCardapio> itemCardapioList) {
-        this.itemCardapioList = itemCardapioList;
-    }
+    private String descricaoCardapio;
+    private Restaurante idRestaurante;
 }

@@ -2,13 +2,10 @@ package br.com.fiap.imesa.infrastructure.repository;
 
 import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
 import br.com.fiap.imesa.domain.gateway.IConsultaTipoUsuarioPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaTodosTipoUsuarioRepository;
 import br.com.fiap.imesa.infrastructure.repository.mapper.TipoUsuarioEntityMapper;
-import br.com.fiap.imesa.infrastructure.repository.mapper.UsuarioEntityMapper;
 import br.com.fiap.imesa.infrastructure.repository.springdata.TipoUsuarioRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
