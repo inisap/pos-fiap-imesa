@@ -1,39 +1,30 @@
 package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.application.exception.UsuarioNaoEncontradoException;
-import br.com.fiap.imesa.domain.gateway.IConsultaEnderecoPorIdUsuarioRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IDeletaEnderecoUsuarioRepository;
-import br.com.fiap.imesa.domain.gateway.IDeletaUsuarioRepository;
+import br.com.fiap.imesa.domain.gateway.IEnderecoRepository;
+import br.com.fiap.imesa.domain.gateway.IUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DeletarUsuarioUseCase {
-    private final IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository;
+    private final IUsuarioRepository usuarioRepository;
+    private final IEnderecoRepository enderecoRepository;
 
-    private final IConsultaEnderecoPorIdUsuarioRepository consultaEnderecoPorIdUsuarioRepository;
-    private final IDeletaUsuarioRepository deletaUsuarioRepository;
-    private final IDeletaEnderecoUsuarioRepository deletaEnderecoUsuarioRepository;
-
-    public DeletarUsuarioUseCase(IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository,
-                                 IConsultaEnderecoPorIdUsuarioRepository consultaEnderecoPorIdUsuarioRepository,
-                                 IDeletaUsuarioRepository deletaUsuarioRepository,
-                                 IDeletaEnderecoUsuarioRepository deletaEnderecoUsuarioRepository) {
-        this.consultaUsuarioPorIdRepository = consultaUsuarioPorIdRepository;
-        this.consultaEnderecoPorIdUsuarioRepository = consultaEnderecoPorIdUsuarioRepository;
-        this.deletaUsuarioRepository = deletaUsuarioRepository;
-        this.deletaEnderecoUsuarioRepository = deletaEnderecoUsuarioRepository;
+    public DeletarUsuarioUseCase(IUsuarioRepository usuarioRepository,
+                                 IEnderecoRepository enderecoRepository) {
+        this.usuarioRepository = usuarioRepository;
+        this.enderecoRepository = enderecoRepository;
     }
 
     public void run(Long idUsuario){
 
-        var usuarioDeletar = consultaUsuarioPorIdRepository.consultar(idUsuario)
+        var usuarioDeletar = usuarioRepository.consultarPorIdUsuario(idUsuario)
                 .orElseThrow(() -> new UsuarioNaoEncontradoException(null, idUsuario));
 
-        var enderecoDeletar = consultaEnderecoPorIdUsuarioRepository.consultar(idUsuario);
+        var enderecoDeletar = enderecoRepository.consultarPorIdDeUsuario(idUsuario);
 
-        enderecoDeletar.ifPresent(deletaEnderecoUsuarioRepository::deletar);
+        enderecoDeletar.ifPresent(enderecoRepository::deletar);
 
-        deletaUsuarioRepository.deletar(usuarioDeletar);
+        usuarioRepository.deletar(usuarioDeletar);
     }
 }

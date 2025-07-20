@@ -6,9 +6,8 @@ import br.com.fiap.imesa.application.mapper.SalvarHorarioFuncionamentoRestaurant
 import br.com.fiap.imesa.application.usecases.command.HorarioFuncionamentoCommand;
 import br.com.fiap.imesa.domain.entities.horarioFuncionamento.HorarioFuncionamento;
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
-import br.com.fiap.imesa.domain.gateway.IConsultaHorarioRestaurantePorIdRepository;
+import br.com.fiap.imesa.domain.gateway.IHorarioFuncionamentoRepository;
 import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
-import br.com.fiap.imesa.domain.gateway.ISalvaHorarioFuncionamentoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,21 +18,17 @@ import java.util.stream.Collectors;
 @Service
 public class SalvaHorarioRestauranteUseCase {
 
-    private final ISalvaHorarioFuncionamentoRepository salvaHorarioFuncionamentoRepository;
-    private final IRestauranteRepository consultaRestauranteRepository;
-    private final IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository;
-
-    public SalvaHorarioRestauranteUseCase(ISalvaHorarioFuncionamentoRepository salvaHorarioFuncionamentoRepository,
-                                          IRestauranteRepository consultaRestauranteRepository,
-                                          IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository) {
-        this.salvaHorarioFuncionamentoRepository = salvaHorarioFuncionamentoRepository;
-        this.consultaRestauranteRepository = consultaRestauranteRepository;
-        this.consultaHorarioRestaurantePorIdRepository = consultaHorarioRestaurantePorIdRepository;
+    private final IHorarioFuncionamentoRepository horarioFuncionamentoRepository;
+    private final IRestauranteRepository restauranteRepository;
+    public SalvaHorarioRestauranteUseCase(IHorarioFuncionamentoRepository horarioFuncionamentoRepository,
+                                          IRestauranteRepository consultaRestauranteRepository) {
+        this.horarioFuncionamentoRepository = horarioFuncionamentoRepository;
+        this.restauranteRepository = consultaRestauranteRepository;
     }
 
     public List<HorarioFuncionamento> run(HorarioFuncionamentoCommand horarioFuncionamentoCommand) {
 
-        var restaurante = consultaRestauranteRepository.consultaPorId(horarioFuncionamentoCommand.getRestauranteId())
+        var restaurante = restauranteRepository.consultaPorId(horarioFuncionamentoCommand.getRestauranteId())
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(null, horarioFuncionamentoCommand.getRestauranteId()));
 
         var horarioFuncionamentoAtualizaar =
@@ -41,13 +36,12 @@ public class SalvaHorarioRestauranteUseCase {
 
         validaFuncionamento(horarioFuncionamentoAtualizaar);
 
-        var horariosRestaurante = consultaHorarioRestaurantePorIdRepository.consultar(horarioFuncionamentoCommand.getRestauranteId());
+        var horariosRestaurante = horarioFuncionamentoRepository.consultarPorIdDeRestaurante(horarioFuncionamentoCommand.getRestauranteId());
 
         aplicarRegras(horariosRestaurante, horarioFuncionamentoAtualizaar, restaurante);
 
 
-
-        return salvaHorarioFuncionamentoRepository.salvar(horarioFuncionamentoAtualizaar);
+        return horarioFuncionamentoRepository.salvar(horarioFuncionamentoAtualizaar);
 
     }
 
@@ -83,30 +77,6 @@ public class SalvaHorarioRestauranteUseCase {
         }
 
         listNovaAtualizar.forEach(a -> a.setRestauranteId(restaurante));
-
-
-
-
-//
-//
-//
-//
-//        // Indexa os existentes por diaSemana
-//        Map<Integer, HorarioFuncionamento> mapExistentesPorDia = listHorariosExistentes.stream()
-//                .collect(Collectors.toMap(HorarioFuncionamento::getDiaSemana, Function.identity()));
-//
-//        // Percorre a lista nova
-//        for (HorarioFuncionamento novo : listNovaAtualizar) {
-//            HorarioFuncionamento existente = mapExistentesPorDia.get(novo.getDiaSemana());
-//
-//            // Se houver um existente com o mesmo dia, pega o ID
-//            if (existente != null) {
-//                novo.setId(existente.getId());
-//            }
-//
-//            // Sempre seta o restaurante
-//            novo.setRestauranteId(restaurante);
-//        }
     }
 
 }

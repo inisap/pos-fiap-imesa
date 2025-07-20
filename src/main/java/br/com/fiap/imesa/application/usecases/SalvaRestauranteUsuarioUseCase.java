@@ -6,31 +6,30 @@ import br.com.fiap.imesa.application.exception.UsuarioNaoValidoParaRestauranteEx
 import br.com.fiap.imesa.application.mapper.RestauranteCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.GravarRestauranteCommand;
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
-import br.com.fiap.imesa.domain.gateway.IConsultaTipoCozinhaPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorIdRepository;
 import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
+import br.com.fiap.imesa.domain.gateway.ITipoCozinhaRepository;
+import br.com.fiap.imesa.domain.gateway.IUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SalvaRestauranteUsuarioUseCase {
 
-    private final IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository;
-    private final IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository;
+    private final IUsuarioRepository usuarioRepository;
+    private final ITipoCozinhaRepository tipoCozinhaRepository;
     private final IRestauranteRepository restauranteRepository;
 
-    public SalvaRestauranteUsuarioUseCase(
-                                          IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository,
-                                          IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository,
+    public SalvaRestauranteUsuarioUseCase(IUsuarioRepository usuarioRepository,
+                                          ITipoCozinhaRepository tipoCozinhaRepository,
                                           IRestauranteRepository restauranteRepository) {
-        this.consultaUsuarioPorIdRepository = consultaUsuarioPorIdRepository;
-        this.consultaTipoCozinhaPorIdRepository = consultaTipoCozinhaPorIdRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.tipoCozinhaRepository = tipoCozinhaRepository;
         this.restauranteRepository = restauranteRepository;
     }
 
     public Restaurante run(GravarRestauranteCommand gravarRestauranteCommand) {
 
         //validar se usuario existe antes de cadastrar o restaurante
-        var usuario = consultaUsuarioPorIdRepository.consultar(gravarRestauranteCommand.getUsuarioId())
+        var usuario = usuarioRepository.consultarPorIdUsuario(gravarRestauranteCommand.getUsuarioId())
                 .orElseThrow(() -> new UsuarioNaoEncontradoException(null, gravarRestauranteCommand.getUsuarioId()));
 
         //validar se usuario esta como dono de restaurante
@@ -39,7 +38,7 @@ public class SalvaRestauranteUsuarioUseCase {
         }
 
         //validar se cozinha selecionada existe
-        var tipoCozinha = consultaTipoCozinhaPorIdRepository.consultar(gravarRestauranteCommand.getTipoCozinha())
+        var tipoCozinha = tipoCozinhaRepository.consultarPorIdTipoCozinha(gravarRestauranteCommand.getTipoCozinha())
                 .orElseThrow(() -> new TipoCozinhaNaoEncontradoException(null, gravarRestauranteCommand.getTipoCozinha()));
 
         var restauranteDomain = RestauranteCommandMapper.commandToDomainCriar(gravarRestauranteCommand);

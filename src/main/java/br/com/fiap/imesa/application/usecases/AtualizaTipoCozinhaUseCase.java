@@ -1,30 +1,25 @@
 package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.application.exception.TipoCozinhaNaoEncontradoException;
-import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.application.mapper.AtualizarTipoCozinhaCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.AtualizarTipoCozinhaCommand;
 import br.com.fiap.imesa.domain.entities.cozinha.TipoCozinha;
-import br.com.fiap.imesa.domain.gateway.IConsultaTipoCozinhaPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.ISalvaTipoCozinhaRepository;
+import br.com.fiap.imesa.domain.gateway.ITipoCozinhaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AtualizaTipoCozinhaUseCase {
 
-    private final ISalvaTipoCozinhaRepository tipoCozinhaRepository;
-    private final IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository;
+    private final ITipoCozinhaRepository tipoCozinhaRepository;
 
-    public AtualizaTipoCozinhaUseCase(ISalvaTipoCozinhaRepository tipoCozinhaRepository,
-                                      IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository) {
+    public AtualizaTipoCozinhaUseCase(ITipoCozinhaRepository tipoCozinhaRepository) {
         this.tipoCozinhaRepository = tipoCozinhaRepository;
-        this.consultaTipoCozinhaPorIdRepository = consultaTipoCozinhaPorIdRepository;
     }
 
     public TipoCozinha run(AtualizarTipoCozinhaCommand command) {
 
         //validando se existe o tipo na base a ser alterado
-        consultaTipoCozinhaPorIdRepository.consultar(command.getId())
+        tipoCozinhaRepository.consultarPorIdTipoCozinha(command.getId())
                 .orElseThrow(() -> new TipoCozinhaNaoEncontradoException(null, command.getId()));
 
         var tipoCozinha = AtualizarTipoCozinhaCommandMapper.commandToDomain(command);

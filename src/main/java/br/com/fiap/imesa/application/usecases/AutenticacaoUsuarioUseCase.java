@@ -3,21 +3,21 @@ package br.com.fiap.imesa.application.usecases;
 import br.com.fiap.imesa.application.exception.LoginInvalidoException;
 import br.com.fiap.imesa.application.usecases.command.ValidarSenhaUsuarioCommand;
 import br.com.fiap.imesa.domain.entities.usuario.Usuario;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorLoginRepository;
+import br.com.fiap.imesa.domain.gateway.IUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AutenticacaoUsuarioUseCase {
-    private final IConsultaUsuarioPorLoginRepository consultaUsuarioPorLoginRepository;
+    private final IUsuarioRepository usuarioRepository;
 
 
-    public AutenticacaoUsuarioUseCase(IConsultaUsuarioPorLoginRepository consultaUsuarioPorLoginRepository) {
-        this.consultaUsuarioPorLoginRepository = consultaUsuarioPorLoginRepository;
+    public AutenticacaoUsuarioUseCase(IUsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
     public Usuario run(ValidarSenhaUsuarioCommand validarSenhaUsuarioCommand){
 
-        var retornoUsuarioOpt = consultaUsuarioPorLoginRepository.consultar(validarSenhaUsuarioCommand.getLogin());
+        var retornoUsuarioOpt = usuarioRepository.consultarPorLogin(validarSenhaUsuarioCommand.getLogin());
 
         Usuario retornoUsuario = retornoUsuarioOpt
                 .orElseThrow(() -> new LoginInvalidoException("Usuário ou senha inválidos"));

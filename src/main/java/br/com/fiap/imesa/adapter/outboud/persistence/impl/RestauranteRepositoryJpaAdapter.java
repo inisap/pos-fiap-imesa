@@ -1,20 +1,20 @@
 package br.com.fiap.imesa.adapter.outboud.persistence.impl;
 
-import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
-import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
 import br.com.fiap.imesa.adapter.outboud.persistence.mapper.RestauranteEntityMapper;
 import br.com.fiap.imesa.adapter.outboud.persistence.springdata.RestauranteRepository;
+import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
+import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class RestauranteAdapterRepositoryImpl implements IRestauranteRepository {
+public class RestauranteRepositoryJpaAdapter implements IRestauranteRepository {
 
     private final RestauranteRepository restauranteRepository;
 
-    public RestauranteAdapterRepositoryImpl(RestauranteRepository restauranteRepository){
+    public RestauranteRepositoryJpaAdapter(RestauranteRepository restauranteRepository){
         this.restauranteRepository = restauranteRepository;
     }
 

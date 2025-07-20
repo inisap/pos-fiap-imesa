@@ -4,20 +4,20 @@ import br.com.fiap.imesa.application.exception.RestauranteNaoEncontradoException
 import br.com.fiap.imesa.application.exception.TipoCozinhaNaoEncontradoException;
 import br.com.fiap.imesa.application.usecases.command.AtualizarRestauranteCommand;
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
-import br.com.fiap.imesa.domain.gateway.IConsultaTipoCozinhaPorIdRepository;
 import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
+import br.com.fiap.imesa.domain.gateway.ITipoCozinhaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AtualizarRestauranteUsuarioUseCase {
 
-    private final IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository;
+    private final ITipoCozinhaRepository tipoCozinhaRepository;
     private final IRestauranteRepository restauranteRepository;
 
     public AtualizarRestauranteUsuarioUseCase(
-                                          IConsultaTipoCozinhaPorIdRepository consultaTipoCozinhaPorIdRepository,
+                                          ITipoCozinhaRepository tipoCozinhaRepository,
                                           IRestauranteRepository restauranteRepository) {
-        this.consultaTipoCozinhaPorIdRepository = consultaTipoCozinhaPorIdRepository;
+        this.tipoCozinhaRepository = tipoCozinhaRepository;
         this.restauranteRepository = restauranteRepository;
     }
 
@@ -28,7 +28,7 @@ public class AtualizarRestauranteUsuarioUseCase {
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(null, atualizarRestauranteCommand.getIdRestaurante()));
 
         //validar se cozinha selecionada existe
-        var tipoCozinha = consultaTipoCozinhaPorIdRepository.consultar(atualizarRestauranteCommand.getTipoCozinha())
+        var tipoCozinha = tipoCozinhaRepository.consultarPorIdTipoCozinha(atualizarRestauranteCommand.getTipoCozinha())
                 .orElseThrow(() -> new TipoCozinhaNaoEncontradoException(null, atualizarRestauranteCommand.getTipoCozinha()));
 
 

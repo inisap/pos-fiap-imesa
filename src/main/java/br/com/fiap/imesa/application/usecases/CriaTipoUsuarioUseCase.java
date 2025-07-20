@@ -3,15 +3,15 @@ package br.com.fiap.imesa.application.usecases;
 import br.com.fiap.imesa.application.mapper.CriarTipoUsuarioCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.CriarTipoUsuarioCommand;
 import br.com.fiap.imesa.domain.entities.usuario.TipoUsuario;
-import br.com.fiap.imesa.domain.gateway.ISalvaTipoUsuarioRepository;
+import br.com.fiap.imesa.domain.gateway.ITipoUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CriaTipoUsuarioUseCase {
 
-    private final ISalvaTipoUsuarioRepository tipoUsuarioRepository;
+    private final ITipoUsuarioRepository tipoUsuarioRepository;
 
-    public CriaTipoUsuarioUseCase(ISalvaTipoUsuarioRepository tipoUsuarioRepository) {
+    public CriaTipoUsuarioUseCase(ITipoUsuarioRepository tipoUsuarioRepository) {
         this.tipoUsuarioRepository = tipoUsuarioRepository;
     }
 

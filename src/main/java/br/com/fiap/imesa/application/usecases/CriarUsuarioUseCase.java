@@ -6,10 +6,8 @@ import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException
 import br.com.fiap.imesa.application.mapper.CriarUsuarioCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.CriarUsuarioCommand;
 import br.com.fiap.imesa.domain.entities.usuario.Usuario;
-import br.com.fiap.imesa.domain.gateway.IConsultaTipoUsuarioPorIdRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorEmailRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorLoginRepository;
-import br.com.fiap.imesa.domain.gateway.ICriaUsuarioRepository;
+import br.com.fiap.imesa.domain.gateway.ITipoUsuarioRepository;
+import br.com.fiap.imesa.domain.gateway.IUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,33 +15,27 @@ import java.time.LocalDateTime;
 @Service
 public class CriarUsuarioUseCase {
 
-    private final ICriaUsuarioRepository criaUsuarioRepository;
-    private final IConsultaUsuarioPorEmailRepository consultaUsuarioPorEmailRepository;
-    private final IConsultaUsuarioPorLoginRepository consultaUsuarioPorLoginRepository;
-    private final IConsultaTipoUsuarioPorIdRepository consultaTipoUsuarioPorIdRepository;
+    private final IUsuarioRepository UsuarioRepository;
+    private final ITipoUsuarioRepository tipoUsuarioRepository;
 
-    public CriarUsuarioUseCase(ICriaUsuarioRepository criaUsuarioRepository,
-                               IConsultaUsuarioPorEmailRepository consultaUsuarioPorEmailRepository,
-                               IConsultaUsuarioPorLoginRepository consultaUsuarioPorLoginRepository,
-                               IConsultaTipoUsuarioPorIdRepository consultaTipoUsuarioPorIdRepository) {
-        this.criaUsuarioRepository = criaUsuarioRepository;
-        this.consultaUsuarioPorEmailRepository = consultaUsuarioPorEmailRepository;
-        this.consultaUsuarioPorLoginRepository = consultaUsuarioPorLoginRepository;
-        this.consultaTipoUsuarioPorIdRepository = consultaTipoUsuarioPorIdRepository;
+    public CriarUsuarioUseCase(IUsuarioRepository UsuarioRepository,
+                               ITipoUsuarioRepository tipoUsuarioRepository) {
+        this.UsuarioRepository = UsuarioRepository;
+        this.tipoUsuarioRepository = tipoUsuarioRepository;
     }
 
     public Usuario run(CriarUsuarioCommand command){
 
-        if (consultaUsuarioPorEmailRepository.consultar(command.getEmail()).isPresent()) {
+        if (UsuarioRepository.consultarPorEmail(command.getEmail()).isPresent()) {
             throw new DuplicacaoEmailJaCadastradoException(null, command.getEmail());
         }
 
-        if (consultaUsuarioPorLoginRepository.consultar(command.getLogin()).isPresent()) {
+        if (UsuarioRepository.consultarPorLogin(command.getLogin()).isPresent()) {
             throw new DuplicacaoLoginJaCadastradoException(null, command.getLogin());
         }
 
-        var tipoUsuario = consultaTipoUsuarioPorIdRepository
-                .consultar(command.getCodigoTipoUsuario())
+        var tipoUsuario = tipoUsuarioRepository
+                .consultarPorIdTipoUsuario(command.getCodigoTipoUsuario())
                 .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getCodigoTipoUsuario()));
 
         var usuario = CriarUsuarioCommandMapper.commandToDomain(command);
@@ -53,6 +45,6 @@ public class CriarUsuarioUseCase {
         usuario.setId(null);
         usuario.setDataAlteracao(LocalDateTime.now());
 
-        return criaUsuarioRepository.criar(usuario);
+        return UsuarioRepository.criar(usuario);
     }
 }

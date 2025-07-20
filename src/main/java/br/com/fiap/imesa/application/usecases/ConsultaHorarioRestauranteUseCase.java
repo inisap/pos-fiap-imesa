@@ -2,7 +2,7 @@ package br.com.fiap.imesa.application.usecases;
 
 import br.com.fiap.imesa.application.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.imesa.domain.entities.horarioFuncionamento.HorarioFuncionamento;
-import br.com.fiap.imesa.domain.gateway.IConsultaHorarioRestaurantePorIdRepository;
+import br.com.fiap.imesa.domain.gateway.IHorarioFuncionamentoRepository;
 import br.com.fiap.imesa.domain.gateway.IRestauranteRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +11,12 @@ import java.util.List;
 @Service
 public class ConsultaHorarioRestauranteUseCase {
     private final IRestauranteRepository consultaRestauranteRepository;
-    private final IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository;
+    private final IHorarioFuncionamentoRepository horarioFuncionamentoRepository;
 
     public ConsultaHorarioRestauranteUseCase(IRestauranteRepository consultaRestauranteRepository,
-                                             IConsultaHorarioRestaurantePorIdRepository consultaHorarioRestaurantePorIdRepository) {
+                                             IHorarioFuncionamentoRepository horarioFuncionamentoRepository) {
         this.consultaRestauranteRepository = consultaRestauranteRepository;
-        this.consultaHorarioRestaurantePorIdRepository = consultaHorarioRestaurantePorIdRepository;
+        this.horarioFuncionamentoRepository = horarioFuncionamentoRepository;
     }
 
     public List<HorarioFuncionamento> run(Long restauranteId){
@@ -25,6 +25,6 @@ public class ConsultaHorarioRestauranteUseCase {
         consultaRestauranteRepository.consultaPorId(restauranteId)
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(null, restauranteId));
 
-        return consultaHorarioRestaurantePorIdRepository.consultar(restauranteId);
+        return horarioFuncionamentoRepository.consultarPorIdDeRestaurante(restauranteId);
     }
 }

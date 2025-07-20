@@ -3,28 +3,27 @@ package br.com.fiap.imesa.application.usecases;
 import br.com.fiap.imesa.application.exception.EnderecoNaoEncontradoParaUsuarioException;
 import br.com.fiap.imesa.application.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.imesa.domain.entities.Endereco;
-import br.com.fiap.imesa.domain.entities.usuario.Usuario;
-import br.com.fiap.imesa.domain.gateway.IConsultaEnderecoPorIdUsuarioRepository;
-import br.com.fiap.imesa.domain.gateway.IConsultaUsuarioPorIdRepository;
+import br.com.fiap.imesa.domain.gateway.IEnderecoRepository;
+import br.com.fiap.imesa.domain.gateway.IUsuarioRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultaEnderecoUsuarioPorIdUsuarioUseCase {
-    private final IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository;
-    private final IConsultaEnderecoPorIdUsuarioRepository consultaEnderecoPorIdUsuarioRepository;
+    private final IUsuarioRepository usuarioRepository;
+    private final IEnderecoRepository enderecoRepository;
 
-    public ConsultaEnderecoUsuarioPorIdUsuarioUseCase(IConsultaUsuarioPorIdRepository consultaUsuarioPorIdRepository,
-                                                      IConsultaEnderecoPorIdUsuarioRepository consultaEnderecoPorIdUsuarioRepository) {
-        this.consultaUsuarioPorIdRepository = consultaUsuarioPorIdRepository;
-        this.consultaEnderecoPorIdUsuarioRepository = consultaEnderecoPorIdUsuarioRepository;
+    public ConsultaEnderecoUsuarioPorIdUsuarioUseCase(IUsuarioRepository usuarioRepository,
+                                                      IEnderecoRepository enderecoRepository) {
+        this.usuarioRepository = usuarioRepository;
+        this.enderecoRepository = enderecoRepository;
     }
 
     public Endereco run(Long id){
 
-        consultaUsuarioPorIdRepository.consultar(id)
+        usuarioRepository.consultarPorIdUsuario(id)
                 .orElseThrow(() -> new UsuarioNaoEncontradoException(null, id));
 
-        return consultaEnderecoPorIdUsuarioRepository.consultar(id)
+        return enderecoRepository.consultarPorIdDeUsuario( id)
                 .orElseThrow(() -> new EnderecoNaoEncontradoParaUsuarioException(null, id));
     }
 }

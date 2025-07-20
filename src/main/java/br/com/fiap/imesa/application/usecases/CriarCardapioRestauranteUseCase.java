@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CriarCardapioRestauranteUseCase {
 
-    private final ICardapioRestauranteRepository salvaCardapioRestauranteRepository;
+    private final ICardapioRestauranteRepository cardapioRestauranteRepository;
     private final IRestauranteRepository consultaRestauranteRepository;
 
-    public CriarCardapioRestauranteUseCase(ICardapioRestauranteRepository salvaCardapioRestauranteRepository,
+    public CriarCardapioRestauranteUseCase(ICardapioRestauranteRepository cardapioRestauranteRepository,
                                            IRestauranteRepository consultaRestauranteRepository) {
-        this.salvaCardapioRestauranteRepository = salvaCardapioRestauranteRepository;
+        this.cardapioRestauranteRepository = cardapioRestauranteRepository;
         this.consultaRestauranteRepository = consultaRestauranteRepository;
     }
 
@@ -28,7 +28,7 @@ public class CriarCardapioRestauranteUseCase {
 
         var cardapioCriar = CardapioCommandMapper.commandCriarToDomain(command);
 
-        return salvaCardapioRestauranteRepository.salvar(cardapioCriar);
+        return cardapioRestauranteRepository.salvar(cardapioCriar);
 
     }
 }

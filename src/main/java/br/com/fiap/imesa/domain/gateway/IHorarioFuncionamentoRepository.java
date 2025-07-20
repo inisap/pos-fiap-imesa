@@ -4,7 +4,10 @@ import br.com.fiap.imesa.domain.entities.horarioFuncionamento.HorarioFuncionamen
 
 import java.util.List;
 
-public interface ISalvaHorarioFuncionamentoRepository {
+public interface IHorarioFuncionamentoRepository {
 
     List<HorarioFuncionamento> salvar(List<HorarioFuncionamento> horarioFuncionamento);
+
+    List<HorarioFuncionamento> consultarPorIdDeRestaurante(Long restauranteId);
+
 }
