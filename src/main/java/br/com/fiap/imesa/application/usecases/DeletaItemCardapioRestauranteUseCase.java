@@ -1,12 +1,8 @@
 package br.com.fiap.imesa.application.usecases;
 
-import br.com.fiap.imesa.application.exception.CombinacaoCardarpioERestauranteNaoExisteException;
 import br.com.fiap.imesa.application.exception.CombinacaoItemCardapioEIdCardarpioNaoExisteException;
-import br.com.fiap.imesa.application.mapper.CardapioCommandMapper;
 import br.com.fiap.imesa.application.mapper.ItemCardapioCommandMapper;
-import br.com.fiap.imesa.application.usecases.command.DeletarCardapioCommand;
 import br.com.fiap.imesa.application.usecases.command.DeletarItemCardapioCommand;
-import br.com.fiap.imesa.domain.gateway.ICardapioRestauranteRepository;
 import br.com.fiap.imesa.domain.gateway.IItemCardapioRestauranteRepository;
 import org.springframework.stereotype.Service;
 

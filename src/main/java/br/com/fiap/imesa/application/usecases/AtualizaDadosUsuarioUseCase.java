@@ -38,13 +38,12 @@ public class AtualizaDadosUsuarioUseCase {
 
     private void aplicarAtualizacoes(Usuario usuario, AtualizarUsuarioCommand atualizarUsuarioCommand) {
 
-        if (atualizarUsuarioCommand.getNome() != null) {
+        if (atualizarUsuarioCommand.getNome() != null)
             usuario.setNome(atualizarUsuarioCommand.getNome());
-            if (atualizarUsuarioCommand.getEmail() != null)
-                usuario.setEmail(atualizarUsuarioCommand.getEmail());
-            if (atualizarUsuarioCommand.getLogin() != null)
-                usuario.setLogin(atualizarUsuarioCommand.getLogin());
-        }
+        if (atualizarUsuarioCommand.getEmail() != null)
+            usuario.setEmail(atualizarUsuarioCommand.getEmail());
+        if (atualizarUsuarioCommand.getLogin() != null)
+            usuario.setLogin(atualizarUsuarioCommand.getLogin());
     }
 
     private void validaDuplicidade(AtualizarUsuarioCommand atualizarUsuarioCommand){

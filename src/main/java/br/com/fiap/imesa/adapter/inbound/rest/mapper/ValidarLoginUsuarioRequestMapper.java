@@ -6,9 +6,9 @@ import br.com.fiap.imesa.application.usecases.command.ValidarSenhaUsuarioCommand
 public class ValidarLoginUsuarioRequestMapper {
 
     public static ValidarSenhaUsuarioCommand dtoToCommand(LoginDtoRequest loginDtoRequest){
-        return new ValidarSenhaUsuarioCommand(
-                loginDtoRequest.getLogin(),
-                loginDtoRequest.getPassword()
-        );
+        return ValidarSenhaUsuarioCommand.builder()
+                .login(loginDtoRequest.getLogin())
+                .password(loginDtoRequest.getPassword())
+                .build();
     }
 }

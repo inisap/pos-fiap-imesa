@@ -12,19 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class AtualizaCardapioRestauranteUseCase {
 
-    private final IRestauranteRepository consultaRestauranteRepository;
+    private final IRestauranteRepository restauranteRepository;
     private final ICardapioRestauranteRepository cardapioRestauranteRepository;
 
-    public AtualizaCardapioRestauranteUseCase(IRestauranteRepository consultaRestauranteRepository,
+    public AtualizaCardapioRestauranteUseCase(IRestauranteRepository restauranteRepository,
                                                       ICardapioRestauranteRepository cardapioRestauranteRepository) {
-        this.consultaRestauranteRepository = consultaRestauranteRepository;
+        this.restauranteRepository = restauranteRepository;
         this.cardapioRestauranteRepository = cardapioRestauranteRepository;
     }
 
     public Cardapio run(AtualizarCardapioCommand command) {
 
         //validando se restaurante existe
-        consultaRestauranteRepository.consultaPorId(command.getIdRestaurante())
+        restauranteRepository.consultaPorId(command.getIdRestaurante())
                 .orElseThrow(() -> new RestauranteNaoEncontradoException(null, command.getIdRestaurante()));
 
         //validando se o cardapio existe
