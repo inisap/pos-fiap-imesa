@@ -98,7 +98,6 @@ public class RestaurantesController {
             @PathVariable("idRestaurante") Long idRestaurante
     ) {
         //passando o parametro puro devido a simplicidade, nao sendo necessario converter para um command
-        //chamando o usecase passando o domain
         deletaRestauranteUseCase.run(idRestaurante);
 
         return ResponseEntity.noContent().build();
