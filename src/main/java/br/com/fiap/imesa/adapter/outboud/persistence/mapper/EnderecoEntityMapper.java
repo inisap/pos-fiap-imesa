@@ -1,7 +1,7 @@
 package br.com.fiap.imesa.adapter.outboud.persistence.mapper;
 
 import br.com.fiap.imesa.adapter.outboud.persistence.entity.EnderecoEntity;
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 
 public class EnderecoEntityMapper {
 

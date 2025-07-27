@@ -1,4 +1,4 @@
-package br.com.fiap.imesa.domain.entities;
+package br.com.fiap.imesa.domain.entities.endereco;
 
 import lombok.Builder;
 

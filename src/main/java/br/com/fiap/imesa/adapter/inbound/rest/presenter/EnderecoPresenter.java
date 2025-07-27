@@ -1,7 +1,7 @@
 package br.com.fiap.imesa.adapter.inbound.rest.presenter;
 
 import br.com.fiap.imesa.adapter.inbound.rest.dto.EnderecoDtoResponse;
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 
 public class EnderecoPresenter {
 

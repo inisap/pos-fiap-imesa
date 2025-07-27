@@ -1,6 +1,7 @@
 package br.com.fiap.imesa.domain.gateway;
 
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
+import br.com.fiap.imesa.domain.entities.usuario.Usuario;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,4 +13,5 @@ public interface IRestauranteRepository {
     List<Restaurante> consultarTodos();
     List<Restaurante> consultarComFiltros(Restaurante restaurante);
     Optional<Restaurante> consultaPorId(Long restauranteId);
+    void deletar(Restaurante restaurante);
 }

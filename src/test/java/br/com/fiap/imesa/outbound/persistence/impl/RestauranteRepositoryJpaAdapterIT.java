@@ -96,6 +96,10 @@ class RestauranteRepositoryJpaAdapterIT {
         // [6] atualizar
         var atualizado = restauranteRepositoryJpaAdapter.atualizar(restauranteAtualizar);
         assertTrue(atualizado.getNome().equalsIgnoreCase(restauranteAtualizar.getNome()));
+
+        // [7] Deletar
+        restauranteRepositoryJpaAdapter.deletar(salvo);
+        assertTrue(restauranteRepositoryJpaAdapter.consultaPorId(salvo.getId()).isEmpty());
     }
 }
 

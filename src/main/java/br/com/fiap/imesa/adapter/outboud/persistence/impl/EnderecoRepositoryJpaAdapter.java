@@ -2,7 +2,7 @@ package br.com.fiap.imesa.adapter.outboud.persistence.impl;
 
 import br.com.fiap.imesa.adapter.outboud.persistence.mapper.EnderecoEntityMapper;
 import br.com.fiap.imesa.adapter.outboud.persistence.springdata.EnderecoRepository;
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 import br.com.fiap.imesa.domain.gateway.IEnderecoRepository;
 import org.springframework.stereotype.Repository;
 

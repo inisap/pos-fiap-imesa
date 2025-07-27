@@ -9,6 +9,7 @@ import br.com.fiap.imesa.adapter.inbound.rest.presenter.ConsultarRestaurantePres
 import br.com.fiap.imesa.adapter.inbound.rest.presenter.CriarRestaurantePresenter;
 import br.com.fiap.imesa.application.usecases.AtualizarRestauranteUsuarioUseCase;
 import br.com.fiap.imesa.application.usecases.ConsultaRestauranteUseCase;
+import br.com.fiap.imesa.application.usecases.DeletaRestauranteUseCase;
 import br.com.fiap.imesa.application.usecases.SalvaRestauranteUsuarioUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,13 +29,16 @@ public class RestaurantesController {
    private final SalvaRestauranteUsuarioUseCase salvaRestauranteUsuarioUseCase;
    private final ConsultaRestauranteUseCase consultaRestauranteUseCase;
    private final AtualizarRestauranteUsuarioUseCase atualizarRestauranteUsuarioUseCase;
+   private final DeletaRestauranteUseCase deletaRestauranteUseCase;
     public RestaurantesController(SalvaRestauranteUsuarioUseCase salvaRestauranteUsuarioUseCase,
                                   ConsultaRestauranteUseCase consultaRestauranteUseCase,
-                                  AtualizarRestauranteUsuarioUseCase atualizarRestauranteUsuarioUseCase
+                                  AtualizarRestauranteUsuarioUseCase atualizarRestauranteUsuarioUseCase,
+                                  DeletaRestauranteUseCase deletaRestauranteUseCase
     ){
         this.salvaRestauranteUsuarioUseCase = salvaRestauranteUsuarioUseCase;
         this.consultaRestauranteUseCase = consultaRestauranteUseCase;
         this.atualizarRestauranteUsuarioUseCase = atualizarRestauranteUsuarioUseCase;
+        this.deletaRestauranteUseCase = deletaRestauranteUseCase;
     }
 
     @Operation(description = "Endpoint responsavel por Criar um Restaurante")
@@ -86,6 +90,18 @@ public class RestaurantesController {
 
         //convertendo o domain para dto para retornar para o chamador
         return ResponseEntity.ok(CriarRestaurantePresenter.toDto(restauranteCriado));
+    }
+
+    @Operation(description = "Endpoint responsavel por Deletar um restaurante")
+    @DeleteMapping("/{idRestaurante}")
+    public ResponseEntity<Void> deletaRestaurante(
+            @PathVariable("idRestaurante") Long idRestaurante
+    ) {
+        //passando o parametro puro devido a simplicidade, nao sendo necessario converter para um command
+        //chamando o usecase passando o domain
+        deletaRestauranteUseCase.run(idRestaurante);
+
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -65,5 +65,12 @@ public class RestauranteRepositoryJpaAdapter implements IRestauranteRepository {
 
     }
 
+    @Override
+    public void deletar(Restaurante restaurante){
+        var restauranteDeletarEntity = RestauranteEntityMapper.toEntity(restaurante);
+
+        restauranteRepository.delete(restauranteDeletarEntity);
+    }
+
 
 }

@@ -97,5 +97,14 @@ public class RestaurantesControllerIT {
                 .andExpect(status().isOk());
     }
 
+    @Order(5)
+    @Test
+    void deveDeletarRestaurante() throws Exception {
+
+        mockMvc.perform(delete("/v1/restaurantes/{idRestaurante}", 3L)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
 }
 

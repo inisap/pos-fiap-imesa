@@ -1,7 +1,7 @@
 package br.com.fiap.imesa.application.mapper;
 
 import br.com.fiap.imesa.application.usecases.command.GravarEnderecoCommand;
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 
 public class CriarAtualizarEnderecoUsuarioCommandMapper {
 

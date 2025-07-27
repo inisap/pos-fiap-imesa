@@ -1,6 +1,6 @@
 package br.com.fiap.imesa.domain.gateway;
 
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 package br.com.fiap.imesa.outbound.persistence.impl;
 
 import br.com.fiap.imesa.adapter.outboud.persistence.impl.EnderecoRepositoryJpaAdapter;
-import br.com.fiap.imesa.domain.entities.Endereco;
+import br.com.fiap.imesa.domain.entities.endereco.Endereco;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
