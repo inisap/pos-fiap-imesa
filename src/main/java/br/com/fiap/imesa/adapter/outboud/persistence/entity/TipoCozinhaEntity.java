@@ -1,15 +1,14 @@
 package br.com.fiap.imesa.adapter.outboud.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "tipos_cozinhas")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class TipoCozinhaEntity {
 
     @Id
@@ -18,12 +17,4 @@ public class TipoCozinhaEntity {
 
     @Column(nullable = false, length = 100, name = "descricao_tipo_cozinha")
     private String descricaoTipoCozinha;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getDescricaoTipoCozinha() {
-        return descricaoTipoCozinha;
-    }
 }

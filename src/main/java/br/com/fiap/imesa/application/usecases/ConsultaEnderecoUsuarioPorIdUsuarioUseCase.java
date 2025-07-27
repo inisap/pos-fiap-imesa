@@ -23,7 +23,7 @@ public class ConsultaEnderecoUsuarioPorIdUsuarioUseCase {
         usuarioRepository.consultarPorIdUsuario(id)
                 .orElseThrow(() -> new UsuarioNaoEncontradoException(null, id));
 
-        return enderecoRepository.consultarPorIdDeUsuario( id)
+        return enderecoRepository.consultarPorIdDeUsuario(id)
                 .orElseThrow(() -> new EnderecoNaoEncontradoParaUsuarioException(null, id));
     }
 }

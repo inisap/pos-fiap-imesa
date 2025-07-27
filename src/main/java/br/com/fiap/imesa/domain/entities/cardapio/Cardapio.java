@@ -3,8 +3,9 @@ package br.com.fiap.imesa.domain.entities.cardapio;
 import br.com.fiap.imesa.domain.entities.restaurante.Restaurante;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class Cardapio {
 

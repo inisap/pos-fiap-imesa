@@ -9,7 +9,6 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "horarios_funcionamentos")
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

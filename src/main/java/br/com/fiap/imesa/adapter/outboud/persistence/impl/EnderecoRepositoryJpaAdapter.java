@@ -31,7 +31,7 @@ public class EnderecoRepositoryJpaAdapter implements IEnderecoRepository {
     @Override
     public Optional<Endereco> consultarPorIdDeUsuario(Long id){
 
-        var enderecoEntity = enderecoRepository.findById(id);
+        var enderecoEntity = enderecoRepository.findByUsuario(id);
 
         return enderecoEntity.map(EnderecoEntityMapper::toDomain);
     }

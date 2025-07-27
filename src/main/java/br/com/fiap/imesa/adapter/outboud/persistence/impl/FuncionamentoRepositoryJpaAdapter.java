@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class FuncionamentoRepositoryImpl implements IHorarioFuncionamentoRepository {
+public class FuncionamentoRepositoryJpaAdapter implements IHorarioFuncionamentoRepository {
 
     private final HorarioFuncionamentoRepository horarioFuncionamentoRepository;
 
-    public FuncionamentoRepositoryImpl(HorarioFuncionamentoRepository horarioFuncionamentoRepository){
+    public FuncionamentoRepositoryJpaAdapter(HorarioFuncionamentoRepository horarioFuncionamentoRepository){
         this.horarioFuncionamentoRepository = horarioFuncionamentoRepository;
     }
 

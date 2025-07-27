@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public class ItemCardapioRestauranteRepositoryImpl implements IItemCardapioRestauranteRepository {
+public class ItemCardapioRestauranteRepositoryJpaAdapter implements IItemCardapioRestauranteRepository {
 
     private final ItemCardapioRepository itemCardapioRestauranteRepository;
 
-    public ItemCardapioRestauranteRepositoryImpl(ItemCardapioRepository itemCardapioRestauranteRepository){
+    public ItemCardapioRestauranteRepositoryJpaAdapter(ItemCardapioRepository itemCardapioRestauranteRepository){
         this.itemCardapioRestauranteRepository = itemCardapioRestauranteRepository;
     }
 

@@ -1,17 +1,14 @@
 package br.com.fiap.imesa.adapter.outboud.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "itens_cardapios")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class ItemCardapioEntity {
 
     @Id
