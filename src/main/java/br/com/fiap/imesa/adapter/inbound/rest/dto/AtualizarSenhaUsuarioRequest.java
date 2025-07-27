@@ -2,7 +2,10 @@ package br.com.fiap.imesa.adapter.inbound.rest.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public class AtualizarSenhaUsuarioRequest {
 
     @NotNull(message = "é obrigatório")
@@ -15,27 +18,4 @@ public class AtualizarSenhaUsuarioRequest {
     @NotBlank(message = "não pode ser vazio")
     private String confirmacaoSenhaNova;
 
-    public String getSenhaAntiga() {
-        return senhaAntiga;
-    }
-
-    public void setSenhaAntiga(String senhaAntiga) {
-        this.senhaAntiga = senhaAntiga;
-    }
-
-    public String getSenhaNova() {
-        return senhaNova;
-    }
-
-    public void setSenhaNova(String senhaNova) {
-        this.senhaNova = senhaNova;
-    }
-
-    public String getConfirmacaoSenhaNova() {
-        return confirmacaoSenhaNova;
-    }
-
-    public void setConfirmacaoSenhaNOva(String confirmacaoSenhaNOva) {
-        this.confirmacaoSenhaNova = confirmacaoSenhaNOva;
-    }
 }

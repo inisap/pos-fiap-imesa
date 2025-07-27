@@ -177,5 +177,27 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.tipo.id").value("1"))
                 .andExpect(jsonPath("$.tipo.nome").value("DONO DE RESTAURANTE"));
     }
+
+    //DuplicacaoLoginJaCadastradoException
+    @Order(8)
+    void deveLancarExceptionLoginJaEmUso() throws Exception {
+
+        String jsonRequest = """
+            {
+                "nome":"Diego Pasini",
+                "email":"diego@teste8.com.br",
+                "login":"teste_login",
+                "password":"diego123",
+                "codigoTipoUsuario":"1"
+            }
+            """;
+
+        mockMvc.perform(post("/v1/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().is4xxClientError());
+    }
+
+
 }
 
