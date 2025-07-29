@@ -1,5 +1,5 @@
 DELETE FROM tipos_usuarios;
-INSERT INTO tipos_usuarios (id, descricao_tipo_usuario) VALUES (1, 'DONO DE RESTAURANTE');
+INSERT INTO tipos_usuarios (id, descricao_tipo_usuario) VALUES (1, 'DONO_RESTAURANTE');
 
 INSERT INTO usuarios (id, tipo_usuario_id, login, email, nome, senha_hash, data_alteracao) VALUES (2, 1, 'teste_login', 'teste@teste.com.br', 'nome teste', 'senhaTeste123', '2025-01-01 00:00:00');
 INSERT INTO usuarios (id, tipo_usuario_id, login, email, nome, senha_hash, data_alteracao) VALUES (3, 1, 'teste_login44', 'teste@teste44.com.br', 'nome teste44', 'senhaTeste1234', '2025-01-01 00:00:00');

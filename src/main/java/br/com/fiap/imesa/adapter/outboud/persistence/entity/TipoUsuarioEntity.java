@@ -16,7 +16,7 @@ public class TipoUsuarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 100, name = "descricao_tipo_usuario")
+    @Column(nullable = false, unique = true, length = 100, name = "descricao_tipo_usuario")
     private String descricaoTipoUsuario;
 
     public Integer getId() {

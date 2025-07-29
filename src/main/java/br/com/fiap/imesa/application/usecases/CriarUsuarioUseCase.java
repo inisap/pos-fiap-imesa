@@ -35,8 +35,8 @@ public class CriarUsuarioUseCase {
         }
 
         var tipoUsuario = tipoUsuarioRepository
-                .consultarPorIdTipoUsuario(command.getCodigoTipoUsuario())
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getCodigoTipoUsuario()));
+                .consultarPorNome(command.getTipoUsuario())
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getTipoUsuario()));
 
         var usuario = CriarUsuarioCommandMapper.commandToDomain(command);
 

@@ -14,4 +14,6 @@ public interface ITipoUsuarioRepository {
     List<TipoUsuario> consultarTodosTiposDeUsuario();
 
     void deletar(TipoUsuario tipoUsuario);
+
+    Optional<TipoUsuario> consultarPorNome(String nomeTipo);
 }

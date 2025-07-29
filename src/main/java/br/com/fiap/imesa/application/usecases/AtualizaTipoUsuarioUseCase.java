@@ -1,5 +1,6 @@
 package br.com.fiap.imesa.application.usecases;
 
+import br.com.fiap.imesa.application.exception.TipoUsuarioJaExisteException;
 import br.com.fiap.imesa.application.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.imesa.application.mapper.AtualizarTipoUsuarioCommandMapper;
 import br.com.fiap.imesa.application.usecases.command.AtualizarTipoUsuarioCommand;
@@ -20,7 +21,12 @@ public class AtualizaTipoUsuarioUseCase {
 
         //validando se existe o tipo na base a ser alterado
         tipoUsuarioRepository.consultarPorIdTipoUsuario(command.getId())
-                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getId()));
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(null, command.getId().toString()));
+
+        //validando se o tipo a ser cadastrado ja existe
+        if(tipoUsuarioRepository.consultarPorNome(command.getNome()).isPresent()){
+            throw new TipoUsuarioJaExisteException(null, command.getNome());
+        }
 
         var tipoUsuario = AtualizarTipoUsuarioCommandMapper.commandToDomain(command);
 

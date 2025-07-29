@@ -54,4 +54,11 @@ public class TipoUsuarioRepositoryJpaAdapter implements ITipoUsuarioRepository {
         tipoUsuarioRepository.delete(tipoUsuarioDeletarEntity);
 
     }
+
+    @Override
+    public Optional<TipoUsuario> consultarPorNome(String nomeTipo){
+        var tipoUsuarioEntity = tipoUsuarioRepository.findByDescricaoTipoUsuario(nomeTipo);
+
+        return tipoUsuarioEntity.map(TipoUsuarioEntityMapper::toDomain);
+    }
 }

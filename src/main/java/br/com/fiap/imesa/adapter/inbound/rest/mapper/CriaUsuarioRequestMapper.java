@@ -11,7 +11,7 @@ public class CriaUsuarioRequestMapper {
                 .email(usuarioDtoRequest.getEmail())
                 .login(usuarioDtoRequest.getLogin())
                 .password(usuarioDtoRequest.getPassword())
-                .codigoTipoUsuario(usuarioDtoRequest.getCodigoTipoUsuario())
+                .tipoUsuario(usuarioDtoRequest.getTipoUsuario())
                 .build();
 
 

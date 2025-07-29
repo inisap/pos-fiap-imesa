@@ -49,7 +49,7 @@ public class UsuarioControllerIT {
                 "email":"diego@teste1.com.br",
                 "login":"diego.pasini1",
                 "password":"diego123",
-                "codigoTipoUsuario":"1"
+                "tipoUsuario":"DONO_RESTAURANTE"
             }
             """;
 
@@ -63,7 +63,7 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.email").value("diego@teste1.com.br"))
                 .andExpect(jsonPath("$.login").value("diego.pasini1"))
                 .andExpect(jsonPath("$.tipoUsuario.id").value("1"))
-                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO DE RESTAURANTE"));
+                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO_RESTAURANTE"));
     }
 
     @Order(2)
@@ -81,7 +81,7 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.email").value("teste@teste.com.br"))
                 .andExpect(jsonPath("$.login").value("teste_login"))
                 .andExpect(jsonPath("$.tipoUsuario.id").value("1"))
-                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO DE RESTAURANTE"));
+                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO_RESTAURANTE"));
     }
 
     @Order(3)
@@ -99,7 +99,7 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.email").value("teste@teste.com.br"))
                 .andExpect(jsonPath("$.login").value("teste_login"))
                 .andExpect(jsonPath("$.tipoUsuario.id").value("1"))
-                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO DE RESTAURANTE"));
+                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO_RESTAURANTE"));
     }
 
     @Order(4)
@@ -126,7 +126,7 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.email").value("diego@teste4.com.br"))
                 .andExpect(jsonPath("$.login").value("login_teste4"))
                 .andExpect(jsonPath("$.tipoUsuario.id").value("1"))
-                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO DE RESTAURANTE"));
+                .andExpect(jsonPath("$.tipoUsuario.nome").value("DONO_RESTAURANTE"));
     }
 
     @Order(5)
@@ -175,7 +175,7 @@ public class UsuarioControllerIT {
                 .andExpect(jsonPath("$.nome").value("nome teste6"))
                 .andExpect(jsonPath("$.login").value("teste_login6"))
                 .andExpect(jsonPath("$.tipo.id").value("1"))
-                .andExpect(jsonPath("$.tipo.nome").value("DONO DE RESTAURANTE"));
+                .andExpect(jsonPath("$.tipo.nome").value("DONO_RESTAURANTE"));
     }
 
     //DuplicacaoLoginJaCadastradoException

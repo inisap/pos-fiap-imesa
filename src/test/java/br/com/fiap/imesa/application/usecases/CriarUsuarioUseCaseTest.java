@@ -42,12 +42,12 @@ public class CriarUsuarioUseCaseTest {
         var command = CriarUsuarioCommand.builder()
                 .login("login")
                 .email("email")
-                .codigoTipoUsuario(1)
+                .tipoUsuario("DONO_RESTAURANTE")
                 .build();
 
         var tipoUsuario = TipoUsuario.builder()
                         .id(1)
-                        .nome("Dono de Restaurante")
+                        .nome("DONO_RESTAURANTE")
                         .build();
 
 
@@ -57,7 +57,7 @@ public class CriarUsuarioUseCaseTest {
         when(UsuarioRepository.consultarPorLogin(command.getLogin()))
                 .thenReturn(Optional.empty());
 
-        when(tipoUsuarioRepository.consultarPorIdTipoUsuario(command.getCodigoTipoUsuario()))
+        when(tipoUsuarioRepository.consultarPorNome(command.getTipoUsuario()))
                 .thenReturn(Optional.of(tipoUsuario));
 
         when(UsuarioRepository.criar(any(Usuario.class))).thenAnswer(i -> i.getArgument(0));
@@ -69,7 +69,7 @@ public class CriarUsuarioUseCaseTest {
         assertNotNull(resultado);
         verify(UsuarioRepository).consultarPorEmail(command.getEmail());
         verify(UsuarioRepository).consultarPorLogin(command.getLogin());
-        verify(tipoUsuarioRepository).consultarPorIdTipoUsuario(command.getCodigoTipoUsuario());
+        verify(tipoUsuarioRepository).consultarPorNome(command.getTipoUsuario());
         verify(UsuarioRepository).criar(any(Usuario.class));
 
     }
@@ -82,12 +82,12 @@ public class CriarUsuarioUseCaseTest {
         var command = CriarUsuarioCommand.builder()
                 .login("login")
                 .email("email")
-                .codigoTipoUsuario(1)
+                .tipoUsuario("DONO_RESTAURANTE")
                 .build();
 
         var tipoUsuario = TipoUsuario.builder()
                 .id(1)
-                .nome("Dono de Restaurante")
+                .nome("DONO_RESTAURANTE")
                 .build();
 
         var usuario = Usuario.builder()
@@ -105,7 +105,7 @@ public class CriarUsuarioUseCaseTest {
         //assert
         verify(UsuarioRepository).consultarPorEmail(command.getEmail());
         verify(UsuarioRepository, never()).consultarPorLogin(command.getLogin());
-        verify(tipoUsuarioRepository, never()).consultarPorIdTipoUsuario(command.getCodigoTipoUsuario());
+        verify(tipoUsuarioRepository, never()).consultarPorNome(command.getNome());
         verify(UsuarioRepository, never()).criar(any(Usuario.class));
 
     }
@@ -118,12 +118,7 @@ public class CriarUsuarioUseCaseTest {
         var command = CriarUsuarioCommand.builder()
                 .login("login")
                 .email("email")
-                .codigoTipoUsuario(1)
-                .build();
-
-        var tipoUsuario = TipoUsuario.builder()
-                .id(1)
-                .nome("Dono de Restaurante")
+                .tipoUsuario("DONO_RESTAURANTE")
                 .build();
 
         var usuario = Usuario.builder()
@@ -144,7 +139,7 @@ public class CriarUsuarioUseCaseTest {
         //assert
         verify(UsuarioRepository).consultarPorEmail(command.getEmail());
         verify(UsuarioRepository).consultarPorLogin(command.getLogin());
-        verify(tipoUsuarioRepository, never()).consultarPorIdTipoUsuario(command.getCodigoTipoUsuario());
+        verify(tipoUsuarioRepository, never()).consultarPorNome(command.getTipoUsuario());
         verify(UsuarioRepository, never()).criar(any(Usuario.class));
     }
 
@@ -156,17 +151,7 @@ public class CriarUsuarioUseCaseTest {
         var command = CriarUsuarioCommand.builder()
                 .login("login")
                 .email("email")
-                .codigoTipoUsuario(1)
-                .build();
-
-        var tipoUsuario = TipoUsuario.builder()
-                .id(1)
-                .nome("Dono de Restaurante")
-                .build();
-
-        var usuario = Usuario.builder()
-                .id(1L)
-                .nome("nome")
+                .tipoUsuario("DONO_RESTAURANTE")
                 .build();
 
 
@@ -176,7 +161,7 @@ public class CriarUsuarioUseCaseTest {
         when(UsuarioRepository.consultarPorLogin(command.getLogin()))
                 .thenReturn(Optional.empty());
 
-        when(tipoUsuarioRepository.consultarPorIdTipoUsuario(command.getCodigoTipoUsuario()))
+        when(tipoUsuarioRepository.consultarPorNome(command.getTipoUsuario()))
                 .thenReturn(Optional.empty());
 
         //Act
@@ -185,7 +170,7 @@ public class CriarUsuarioUseCaseTest {
         //assert
         verify(UsuarioRepository).consultarPorEmail(command.getEmail());
         verify(UsuarioRepository).consultarPorLogin(command.getLogin());
-        verify(tipoUsuarioRepository).consultarPorIdTipoUsuario(command.getCodigoTipoUsuario());
+        verify(tipoUsuarioRepository).consultarPorNome(command.getTipoUsuario());
         verify(UsuarioRepository, never()).criar(any(Usuario.class));
     }
 }

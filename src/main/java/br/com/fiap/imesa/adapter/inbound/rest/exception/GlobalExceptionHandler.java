@@ -84,5 +84,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
+    @ExceptionHandler(TipoUsuarioJaExisteException.class)
+    public ResponseEntity<String> TipoUsuarioJaExisteException(TipoUsuarioJaExisteException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
 
 }

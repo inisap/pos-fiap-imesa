@@ -11,6 +11,6 @@ public class CriarUsuarioCommand {
     private String email;
     private String login;
     private String password;
-    private Integer codigoTipoUsuario;
+    private String tipoUsuario;
 
 }

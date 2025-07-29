@@ -20,6 +20,8 @@ public class UsuarioDtoRequest {
     @NotNull(message = "é obrigatória")
     @NotBlank(message = "não pode ser vazio")
     private String password;
-    private Integer codigoTipoUsuario;
+    @NotNull(message = "é obrigatória")
+    @NotBlank(message = "não pode ser vazio")
+    private String tipoUsuario;
 
 }

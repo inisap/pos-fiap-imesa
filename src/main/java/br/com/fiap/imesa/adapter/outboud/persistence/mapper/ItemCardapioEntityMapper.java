@@ -10,7 +10,7 @@ public class ItemCardapioEntityMapper {
     public static ItemCardapio toDomain(ItemCardapioEntity itemCardapioEntity) {
 
         var cardapio = Cardapio.builder()
-                .codigoCardapio(itemCardapioEntity.getId())
+                .codigoCardapio(itemCardapioEntity.getCardapioEntity().getId())
                 .build();
 
         return ItemCardapio.builder()
