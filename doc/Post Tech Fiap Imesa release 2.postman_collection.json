@@ -1,0 +1,553 @@
+{
+	"info": {
+		"_postman_id": "5763608a-71fa-4ea5-bf13-a957db326650",
+		"name": "Post Tech Fiap Imesa release 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39180784"
+	},
+	"item": [
+		{
+			"name": "Chamadas Administrador Controller",
+			"item": [
+				{
+					"name": "Consulta Todos Tipos de Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Criar tipos de Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricaoTipoUsuario\":\"CLIENTE_DONO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Atualizar tipos de Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricaoTipoUsuario\":\"CLIENTES_DONOS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-usuarios/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deletar um tipo de usuario com base em seu id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-usuarios/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Consultar todos os tipos cozinha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-cozinhas"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Criar tipos de Cozinhas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"COZINHA DELETAR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-cozinhas"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Atualizar tipos de Cozinhas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"FRANCESA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-cozinhas/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deletar um tipo de cozinha com base em seu id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/adm/tipos-cozinhas/3"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega todos endpoints referente a criação de dominios para aplicação, como criação de tipos de usuários e tipos de cozinhas. A ideia é que este endpoint seja utilizado por administradores do sistema, pois terão domínios que serão utilizados por todos na aplicação."
+		},
+		{
+			"name": "Chamadas Usuario Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por Criar um novo Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Diego Pasini\",\r\n    \"email\":\"diego2@teste.com.br\",\r\n    \"login\":\"diego.pasini2\",\r\n    \"password\":\"diego123\",\r\n    \"tipoUsuario\":\"DONO_RESTAURANTE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Consultar o Id do usuario baseado em seu login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/users?login=diego.pasini",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "diego.pasini"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Consultar os dados de um Usuarios baseado em seu Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/users/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por atualizar os dados de um Usuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Diego Pasini\",\r\n    \"email\":\"diego@teste.com.br\",\r\n    \"login\":\"diego.pasini\",\r\n    \"password\":\"diego123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por atualizar a senha de um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAntiga\":\"diego123\",\r\n    \"senhaNova\":\"diego1234\",\r\n    \"confirmacaoSenhaNova\":\"diego1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/users/1/senha"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint que valida o Login e senha de um Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"diego.pasini\",\r\n    \"password\":\"diego1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/users/auth/logins"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deletar um usuario e seu endereco com base no Id do usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/users/2"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega todos endpoints disponíveis para a manipulação de um usuário do sistema."
+		},
+		{
+			"name": "Chamadas Endereco Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por consultar o endereco associando a um Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/users/1/enderecos"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Criar um Endereco associando a um Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logradouro\": \"Rua da Casa do Vint e Dois\",\r\n    \"numero\": \"23\",\r\n    \"complemento\": \"casa 23\",\r\n    \"cep\": \"06364550\",\r\n    \"cidade\": \"Carapicuiba\",\r\n    \"bairro\": \"Jardim Ana Estela\",\r\n    \"estado\": \"São Paulo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/users/3/enderecos"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega os endpoints responsáveis pela manipulação de endereços dos usuarios do sistema."
+		},
+		{
+			"name": "Chamadas Restaurante Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por Criar um Restaurante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Bras Tratoria\",\r\n    \"tipoCozinha\": 1,\r\n    \"usuarioId\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/restaurantes"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Atualizar os dados de um Restaurante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"CASA DE MASSAS ITALIANAS\",\r\n    \"tipoCozinha\": 1,\r\n    \"usuarioId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/restaurantes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Consultar Restaurantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"restaurantes"
+							],
+							"query": [
+								{
+									"key": "tipoCozinha",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "nomeRestaurante",
+									"value": "CASA DE MASSAS ITALIANAS",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deletar um restaurante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/restaurantes/2"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega os endpoints responsáveis por manipular informações sobre um restaurante."
+		},
+		{
+			"name": "Chamadas Horarios Funcionamento Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por criar horarios de funcionamento para um restaurante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"horariosFuncionamento\": [\r\n        {\r\n            \"diaSemana\": 1,\r\n            \"horaAbertura\": \"08:00\",\r\n            \"horaFechamento\": \"18:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 2,\r\n            \"horaAbertura\": \"08:00\",\r\n            \"horaFechamento\": \"18:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 3,\r\n            \"horaAbertura\": \"08:00\",\r\n            \"horaFechamento\": \"18:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 4,\r\n            \"horaAbertura\": \"08:00\",\r\n            \"horaFechamento\": \"18:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 5,\r\n            \"horaAbertura\": \"08:00\",\r\n            \"horaFechamento\": \"18:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 6,\r\n            \"horaAbertura\": \"10:00\",\r\n            \"horaFechamento\": \"22:00\",\r\n            \"flagDiaAberto\": true\r\n        },\r\n        {\r\n            \"diaSemana\": 7,\r\n            \"horaAbertura\": \"10:00\",\r\n            \"horaFechamento\": \"12:00\",\r\n            \"flagDiaAberto\": true\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/restaurantes/1/horarios-funcionamentos"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por consultar o horario de funcionamento de um restaurante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/restaurantes/1/horarios-funcionamentos"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega os endpoints responsáveis por manipular horarios de funcionamento de um restaurante."
+		},
+		{
+			"name": "Chamadas Cardapio Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por criar um cardapio para um restaurante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricaoCardapio\": \"Cadapio de Comida Italiana\",\r\n    \"idRestaurante\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/cardapios"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por atualizar um cardapio para um restaurante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricaoCardapio\": \"Cadapio de Comida Italiana e Portuguesa\",\r\n    \"idRestaurante\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/cardapios/1/restaurantes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por consultar o cardapio de um restaurante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/cardapios?idRestaurante=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"cardapios"
+							],
+							"query": [
+								{
+									"key": "idRestaurante",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deletar um cardapio de um restaurante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/cardapios/3/restaurantes/3"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega os endpoints responsáveis por manipular o cardapio de um restaurante."
+		},
+		{
+			"name": "Chamada Itens Cardapios Controller",
+			"item": [
+				{
+					"name": "Endpoint responsavel por consultar os itens de um cardapio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/imesa/v1/itensCardapio?idCardapio=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"imesa",
+								"v1",
+								"itensCardapio"
+							],
+							"query": [
+								{
+									"key": "idCardapio",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Criar um item para um cardápio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCardapio\": 1,\r\n    \"nomePrato\": \"espaguete\",\r\n    \"descricaoPrato\": \"Espaguete perfeito\",\r\n    \"preco\": 99.90,\r\n    \"disponivelApenasLocal\": true,\r\n    \"linkImagemPrato\": \"s3.us-east-1a.aws.com.br-imagem-prato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/itensCardapio"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Atualizar um item para um cardápio",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomePrato\":\"pasta da nona 2\",\r\n    \"descricaoPrato\":\"Macarrão feito com os melhores ingredientes\",\r\n    \"preco\":89.90,\r\n    \"disponivelApenasLocal\": true,\r\n    \"linkImagemPrato\":\"s3.us-east-1a.aws.com.br-imagem-prato\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/imesa/v1/itensCardapio/1/cardapios/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Endpoint responsavel por Deleter um item do cardápio de um restaurante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9000/imesa/v1/itensCardapio/2/cardapios/1"
+					},
+					"response": []
+				}
+			],
+			"description": "Agrega os endpoints responsaveis por manipular os itens de um cardapio."
+		}
+	]
+}

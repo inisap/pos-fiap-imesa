@@ -15,22 +15,22 @@ import java.time.LocalDateTime;
 @Service
 public class CriarUsuarioUseCase {
 
-    private final IUsuarioRepository UsuarioRepository;
+    private final IUsuarioRepository usuarioRepository;
     private final ITipoUsuarioRepository tipoUsuarioRepository;
 
-    public CriarUsuarioUseCase(IUsuarioRepository UsuarioRepository,
+    public CriarUsuarioUseCase(IUsuarioRepository usuarioRepository,
                                ITipoUsuarioRepository tipoUsuarioRepository) {
-        this.UsuarioRepository = UsuarioRepository;
+        this.usuarioRepository = usuarioRepository;
         this.tipoUsuarioRepository = tipoUsuarioRepository;
     }
 
     public Usuario run(CriarUsuarioCommand command){
 
-        if (UsuarioRepository.consultarPorEmail(command.getEmail()).isPresent()) {
+        if (usuarioRepository.consultarPorEmail(command.getEmail()).isPresent()) {
             throw new DuplicacaoEmailJaCadastradoException(null, command.getEmail());
         }
 
-        if (UsuarioRepository.consultarPorLogin(command.getLogin()).isPresent()) {
+        if (usuarioRepository.consultarPorLogin(command.getLogin()).isPresent()) {
             throw new DuplicacaoLoginJaCadastradoException(null, command.getLogin());
         }
 
@@ -45,6 +45,6 @@ public class CriarUsuarioUseCase {
         usuario.setId(null);
         usuario.setDataAlteracao(LocalDateTime.now());
 
-        return UsuarioRepository.criar(usuario);
+        return usuarioRepository.criar(usuario);
     }
 }

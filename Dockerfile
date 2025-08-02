@@ -1,3 +1,4 @@
+# Dockerfile corrigido com uso direto do Maven
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
@@ -5,18 +6,18 @@ WORKDIR /app
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
-RUN ./mvnw dependency:go-offline
+RUN mvn dependency:go-offline
 
 # Copia o restante do código
-COPY 'src' './src'
+COPY src ./src
 
 # Compila o projeto
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Segunda etapa: imagem mais leve apenas com o JAR
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
-COPY --from=build '/app/target/*.jar' 'app.jar'
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 9000
 ENTRYPOINT ["java", "-jar", "app.jar"]
