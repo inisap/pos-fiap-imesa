@@ -19,7 +19,7 @@ Certifique-se de ter os seguintes softwares instalados:
 
 ### 1. Clone o repositório
 
-git clone https://github.com/inisap/pos-fiap-imesa/tree/release-candidate-0.0.1
+git clone https://github.com/inisap/pos-fiap-imesa/tree/release-candidate-0.0.2
 
 ### 2. Suba os containers com Docker Compose
 
@@ -48,4 +48,4 @@ executar a aplicação e acessar o endpoint via navegador: http://localhost:9000
 
 # Collection do postman para testes
 
-https://github.com/inisap/pos-fiap-imesa/blob/release-candidate-0.0.1/doc/Post%20Tech%20Fiap%20Imesa.postman_collection.json
+https://github.com/inisap/pos-fiap-imesa/blob/release-candidate-0.0.2/doc/Post%20Tech%20Fiap%20Imesa%20release%202.postman_collection.json
